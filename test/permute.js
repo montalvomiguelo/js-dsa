@@ -26,7 +26,5 @@ test('test case #2', (t) => {
 test('test case #3', (t) => {
   const perms = permute([1])
   t.is(perms.length, 1)
-  t.like(perms, [
-    [1],
-  ])
+  t.like(perms, [[1]])
 })

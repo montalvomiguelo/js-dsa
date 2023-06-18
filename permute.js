@@ -19,8 +19,7 @@ export default function permute(nums) {
 function helper(i, nums, permutations) {
   if (i === nums.length) {
     permutations.push(nums.slice())
-  }
-  else {
+  } else {
     for (let j = i; j < nums.length; j++) {
       swap(nums, i, j)
       helper(i + 1, nums, permutations)
