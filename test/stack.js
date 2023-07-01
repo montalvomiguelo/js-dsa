@@ -22,3 +22,13 @@ test('returns the top element', (t) => {
 
   t.is(stack.peek(), 3)
 })
+
+test('checks if the stack is empty', (t) => {
+  const stack = new Stack()
+
+  t.true(stack.isEmpty())
+
+  stack.push(1)
+
+  t.false(stack.isEmpty())
+})
