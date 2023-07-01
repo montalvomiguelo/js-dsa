@@ -28,4 +28,8 @@ export default class Stack {
   clear() {
     this.items = []
   }
+
+  pop() {
+    this.items.pop()
+  }
 }

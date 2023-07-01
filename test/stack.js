@@ -46,3 +46,18 @@ test('removes all elements', (t) => {
 
   t.is(stack.size(), 0)
 })
+
+test('removes the top element', (t) => {
+  const stack = new Stack()
+
+  stack.push(1)
+  stack.push(2)
+  stack.push(3)
+
+  t.is(stack.size(), 3)
+
+  stack.pop()
+
+  t.is(stack.size(), 2)
+  t.is(stack.peek(), 2)
+})
