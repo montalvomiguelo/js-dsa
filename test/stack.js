@@ -32,3 +32,17 @@ test('checks if the stack is empty', (t) => {
 
   t.false(stack.isEmpty())
 })
+
+test('removes all elements', (t) => {
+  const stack = new Stack()
+
+  stack.push(1)
+  stack.push(2)
+  stack.push(3)
+
+  t.is(stack.size(), 3)
+
+  stack.clear()
+
+  t.is(stack.size(), 0)
+})
