@@ -1,38 +1,39 @@
 export default class Stack {
   /** @type {{ [key: number]: number }} */
-  items
+  #items
+  #count
 
   constructor() {
-    this.count = 0
-    this.items = {}
+    this.#count = 0
+    this.#items = {}
   }
 
   /**
    * @param {number} element
    */
   push(element) {
-    this.items[this.count] = element
-    this.count++
+    this.#items[this.#count] = element
+    this.#count++
   }
 
   size() {
-    return this.count
+    return this.#count
   }
 
   peek() {
     if (this.isEmpty()) {
       return undefined
     }
-    return this.items[this.count - 1]
+    return this.#items[this.#count - 1]
   }
 
   isEmpty() {
-    return this.count === 0
+    return this.#count === 0
   }
 
   clear() {
-    this.items = {}
-    this.count = 0
+    this.#items = {}
+    this.#count = 0
   }
 
   pop() {
@@ -40,9 +41,9 @@ export default class Stack {
       return undefined
     }
 
-    this.count--
-    const result = this.items[this.count]
-    delete this.items[this.count]
+    this.#count--
+    const result = this.#items[this.#count]
+    delete this.#items[this.#count]
     return result
   }
 
@@ -51,9 +52,9 @@ export default class Stack {
       return ''
     }
 
-    let objString = `${this.items[0]}`
-    for (let i = 1; i < this.count; i++) {
-      objString = `${objString},${this.items[i]}`
+    let objString = `${this.#items[0]}`
+    for (let i = 1; i < this.#count; i++) {
+      objString = `${objString},${this.#items[i]}`
     }
     return objString
   }
