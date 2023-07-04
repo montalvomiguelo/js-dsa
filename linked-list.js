@@ -34,4 +34,22 @@ export default class LinkedList {
   size() {
     return this.#count
   }
+
+  /**
+   * @param {number} value
+   */
+  indexOf(value) {
+    let current = this.#head
+    let index = 0
+
+    while (current) {
+      if (current.value === value) {
+        return index
+      }
+      index++
+      current = current.next
+    }
+
+    return -1
+  }
 }
