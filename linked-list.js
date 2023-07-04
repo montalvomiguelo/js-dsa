@@ -1,7 +1,7 @@
 import { Node } from './node.js'
 
 export default class LinkedList {
-  /** type {Node | null} */
+  /** @type {Node | null} */
   #head
   #count
 
@@ -51,5 +51,27 @@ export default class LinkedList {
     }
 
     return -1
+  }
+
+  /**
+   * @param {number} index
+   */
+  getElementAt(index) {
+    if (index < 0 || index > this.#count) {
+      return undefined
+    }
+
+    let current = this.#head
+    let count = 0
+
+    while (current) {
+      if (index === count) {
+        break
+      }
+      count++
+      current = current.next
+    }
+
+    return current
   }
 }
