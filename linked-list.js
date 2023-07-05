@@ -79,27 +79,17 @@ export default class LinkedList {
    * @param {number} index
    */
   removeAt(index) {
-    let count = 0
-    let current = this.#head
-    let previous = null
+    const current = this.getElementAt(index)
+    const previous = this.getElementAt(index - 1)
 
-    if (index < 0 || index > this.#count || this.size() === 0) {
+    if (!current) {
       return undefined
     }
 
-    while (current) {
-      if (count === index) {
-        break
-      }
-      previous = current
-      current = current.next
-      count++
-    }
-
     if (!previous) {
-      this.#head = current?.next ?? null
+      this.#head = current.next
     } else {
-      previous.next = current?.next ?? null
+      previous.next = current.next
     }
 
     this.#count--
