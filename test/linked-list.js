@@ -32,3 +32,23 @@ test('returns an element given its position', (t) => {
   t.not(list.getElementAt(1), undefined)
   t.is(list.getElementAt(4), undefined)
 })
+
+test('removes an element from the list given its position', (t) => {
+  const list = new LinkedList()
+
+  list.push(1)
+  list.push(2)
+  list.push(3)
+
+  t.not(list.removeAt(1), undefined)
+  t.is(list.size(), 2)
+
+  t.not(list.removeAt(1), undefined)
+  t.is(list.size(), 1)
+
+  t.not(list.removeAt(0), undefined)
+  t.is(list.size(), 0)
+
+  t.is(list.removeAt(0), undefined)
+  t.is(list.size(), 0)
+})

@@ -74,4 +74,35 @@ export default class LinkedList {
 
     return current
   }
+
+  /**
+   * @param {number} index
+   */
+  removeAt(index) {
+    let count = 0
+    let current = this.#head
+    let previous = null
+
+    if (index < 0 || index > this.#count || this.size() === 0) {
+      return undefined
+    }
+
+    while (current) {
+      if (count === index) {
+        break
+      }
+      previous = current
+      current = current.next
+      count++
+    }
+
+    if (!previous) {
+      this.#head = current?.next ?? null
+    } else {
+      previous.next = current?.next ?? null
+    }
+
+    this.#count--
+    return current
+  }
 }
