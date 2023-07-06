@@ -52,3 +52,19 @@ test('removes an element from the list given its position', (t) => {
   t.is(list.removeAt(0), undefined)
   t.is(list.size(), 0)
 })
+
+test('inserts an element at any position', (t) => {
+  const list = new LinkedList()
+
+  list.push(1)
+  list.push(2)
+  list.push(3)
+
+  t.is(list.insert(10, 0), true)
+  t.is(list.size(), 4)
+
+  t.is(list.insert(11, 1), true)
+  t.is(list.size(), 5)
+
+  t.is(list.insert(12, 10), false)
+})

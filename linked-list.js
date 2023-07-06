@@ -95,4 +95,33 @@ export default class LinkedList {
     this.#count--
     return current
   }
+
+  /**
+   * @param {number} value
+   * @param {number} index
+   * @timecomplexity O(n) where n is the length of the list
+   * @spacecomplexity O(1)
+   */
+  insert(value, index) {
+    const current = this.getElementAt(index)
+    const previous = this.getElementAt(index - 1)
+    const node = new Node(value)
+
+    if (!current) {
+      return false
+    }
+
+    if (previous) {
+      previous.next = node
+    } else {
+      this.#head = node
+    }
+
+    if (current) {
+      node.next = current
+    }
+
+    this.#count++
+    return true
+  }
 }
