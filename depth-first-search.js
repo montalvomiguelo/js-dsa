@@ -21,6 +21,8 @@ export default class Node {
 
   /**
    * @param {string[]} array
+   * @timecomplexity O(n + e) where n is the number of nodes and e is the number of edges
+   * @spacecomplexity O(n) where n is the number of nodes
    */
   depthFirstSearch(array) {
     /** @type {Node[]} */
