@@ -21,25 +21,15 @@ export default class Node {
 
   /**
    * @param {string[]} array
+   * @param {Node} node
    * @timecomplexity O(n + e) where n is the number of nodes and e is the number of edges
    * @spacecomplexity O(n) where n is the number of nodes
    */
-  depthFirstSearch(array) {
-    /** @type {Node[]} */
-    const stack = []
-    stack.push(this)
-
-    while (stack.length) {
-      const node = stack.pop()
-      if (!node) {
-        break
-      }
-      array.push(node.name)
-      for (let i = node.children.length - 1; i >= 0; i--) {
-        stack.push(node.children[i])
-      }
+  depthFirstSearch(array, node = this) {
+    array.push(node.name)
+    for (let i = 0; i < node.children.length; i++) {
+      this.depthFirstSearch(array, node.children[i])
     }
-
     return array
   }
 }
