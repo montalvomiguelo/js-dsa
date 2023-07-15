@@ -68,3 +68,21 @@ test('inserts an element at any position', (t) => {
 
   t.is(list.insert(12, 10), false)
 })
+
+test('checks if the linked list is empty', (t) => {
+  const list = new LinkedList()
+  t.is(list.isEmpty(), true)
+
+  list.push(1)
+  t.is(list.isEmpty(), false)
+})
+
+test('prints the content of the list ', (t) => {
+  const list = new LinkedList()
+
+  list.push(1)
+  list.push(2)
+  list.push(3)
+
+  t.is(list.toString(), '1,2,3')
+})

@@ -35,6 +35,10 @@ export default class LinkedList {
     return this.#count
   }
 
+  isEmpty() {
+    return this.size() === 0
+  }
+
   /**
    * @param {number} value
    */
@@ -123,5 +127,18 @@ export default class LinkedList {
 
     this.#count++
     return true
+  }
+
+  toString() {
+    const result = []
+
+    let node = this.#head
+
+    while (node) {
+      result.push(node.value)
+      node = node.next
+    }
+
+    return result.join(',')
   }
 }
