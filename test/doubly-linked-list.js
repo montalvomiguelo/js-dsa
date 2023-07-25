@@ -43,6 +43,19 @@ test('inserts an element at any position of the list', (t) => {
     if (tail.prev) t.is(tail.prev.value, 3)
     t.is(tail.next, null)
   }
+
+  list.insert(4, 3)
+
+  head = list.getHead()
+  if (head) {
+    t.is(head.value, 2)
+  }
+
+  tail = list.getTail()
+  if (tail) {
+    t.is(tail.value, 4)
+    if (tail.prev) t.is(tail.prev.value, 1)
+  }
 })
 
 test('returns false when inserting an element at an invalid index', (t) => {
