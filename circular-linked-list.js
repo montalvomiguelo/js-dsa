@@ -61,6 +61,26 @@ export default class CircularLinkedList extends LinkedList {
   /**
    * @param {number} index
    */
+  removeAt(index) {
+    const current = this.getElementAt(index)
+    const previous = this.getElementAt(index - 1)
+
+    if (!current) {
+      return
+    }
+
+    if (!previous) {
+      this.#head = current.next
+      current.next = null
+    }
+
+    this.#count--
+    return current
+  }
+
+  /**
+   * @param {number} index
+   */
   getElementAt(index) {
     if (index < 0 || index > this.#count) {
       return undefined
