@@ -3,7 +3,6 @@ import Stack from './stack.js'
 /**
  * @param {number} decimal
  * @param {number} base
- * @returns {string}
  */
 export default function baseConverter(decimal, base) {
   let number = decimal
