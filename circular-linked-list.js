@@ -18,6 +18,8 @@ export default class CircularLinkedList extends LinkedList {
   /**
    * @param {number} value
    * @param {number} index
+   * @timecomplexity O(n) where n is the number of nodes in the list
+   * @spacecomplexity O(1)
    */
   insert(value, index) {
     const node = new Node(value)
@@ -65,6 +67,8 @@ export default class CircularLinkedList extends LinkedList {
 
   /**
    * @param {number} index
+   * @timecomplexity O(n) where n is the number of nodes in the list
+   * @spacecomplexity O(1)
    */
   removeAt(index) {
     const current = this.getElementAt(index)
@@ -94,6 +98,8 @@ export default class CircularLinkedList extends LinkedList {
 
   /**
    * @param {number} index
+   * @timecomplexity O(n) where n is the number of nodes in the list
+   * @spacecomplexity O(1)
    */
   getElementAt(index) {
     if (index < 0 || index > this.#count) {
