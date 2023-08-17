@@ -49,28 +49,61 @@ test('removes an invalid element from the list', (t) => {
   t.is(list.removeAt(0), undefined)
 })
 
-test('removes an element from the beginnig of the list', (t) => {
+test('removes an element from the beginning of the list', (t) => {
   const list = new CircularLinkedList()
 
   list.insert(1, 0)
-  list.insert(2, 1)
-  list.insert(3, 2)
+  list.insert(2, 0)
+  list.insert(3, 0)
 
   const removed = list.removeAt(0)
-  t.not(removed, null)
-
-  if (removed) {
-    t.is(removed.next, null)
-  }
-
-  t.is(list.size(), 2)
-
   const head = list.getHead()
-  const element = list.getElementAt(0)
   const tail = list.getTail()
 
-  if (head && element && tail) {
-    t.is(element, head)
+  t.is(list.size(), 2)
+  t.not(removed, null)
+
+  if (head && tail) {
+    t.is(head.next, tail)
     t.is(tail.next, head)
   }
+})
+
+test('removes an element from the middle of the list', (t) => {
+  const list = new CircularLinkedList()
+
+  list.insert(1, 0)
+  list.insert(2, 0)
+  list.insert(3, 0)
+
+  const removed = list.removeAt(1)
+  const head = list.getHead()
+  const tail = list.getTail()
+
+  t.is(list.size(), 2)
+  t.not(removed, null)
+
+  if (head && removed && tail) {
+    t.is(removed.next, null)
+    t.is(head.next, tail)
+    t.is(tail.next, head)
+  }
+})
+
+test('removes an element from the end of the list', (t) => {
+  const list = new CircularLinkedList()
+
+  list.insert(1, 0)
+  list.insert(2, 0)
+
+  const removed = list.removeAt(1)
+
+  t.is(list.size(), 1)
+  t.not(removed, null)
+
+  const head = list.getHead()
+  const tail = list.getTail()
+
+  t.is(head, tail)
+  t.is(tail, head)
 })
