@@ -5,43 +5,41 @@ test('inserts an element at any position of the list', (t) => {
   const list = new CircularLinkedList()
 
   t.is(list.insert(1, 0), true)
+  t.is(list.size(), 1)
 
   let head = list.getHead()
+  let tail = list.getTail()
 
-  if (head) {
-    t.is(head.next, head)
-    t.is(list.size(), 1)
+  if (head && tail) {
+    t.is(head.next, tail)
+    t.is(head, tail)
   }
 
   const lastHead = head
 
   t.is(list.insert(2, 0), true)
-
   t.is(list.size(), 2)
 
   head = list.getHead()
-  let element = list.getElementAt(1)
+  tail = list.getTail()
 
-  if (head) {
+  if (head && tail) {
     t.not(head, lastHead)
-  }
-
-  if (element) {
-    t.is(element.next, head)
+    t.is(tail.next, head)
+    t.is(head.next, tail)
   }
 
   t.is(list.insert(3, 1), true)
 
   t.is(list.size(), 3)
 
-  element = list.getElementAt(1)
-  const prev = list.getElementAt(0)
+  let element = list.getElementAt(1)
+  head = list.getHead()
+  tail = list.getTail()
 
-  if (element) {
-    if (prev) {
-      t.is(prev.next, element)
-      t.is(element.next, prev.next)
-    }
+  if (element && head && tail) {
+    t.is(head.next, element)
+    t.is(element.next, tail)
   }
 })
 

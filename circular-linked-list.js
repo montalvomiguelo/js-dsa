@@ -30,15 +30,20 @@ export default class CircularLinkedList extends LinkedList {
 
     if (!current) {
       this.#head = node
+      this.#tail = node
       node.next = this.#head
     } else {
       node.next = current
-      if (current.next === current) {
-        current.next = node
+      if (!previous) {
         this.#head = node
-      } else if (previous) {
-        previous.next = node
+      } else {
         node.next = previous.next
+        previous.next = node
+      }
+      if (this.#tail) {
+        if (this.#tail.next === current) {
+          this.#tail.next = this.#head
+        }
       }
     }
 
