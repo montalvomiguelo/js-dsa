@@ -111,7 +111,7 @@ export default class LinkedList {
     const previous = this.getElementAt(index - 1)
     const node = new Node(value)
 
-    if (!current) {
+    if (current === undefined) {
       return false
     }
 

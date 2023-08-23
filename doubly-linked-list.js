@@ -113,6 +113,10 @@ export default class DoublyLinkedList extends LinkedList {
     return current
   }
 
+  getHead() {
+    return this.head
+  }
+
   getTail() {
     return this.tail
   }

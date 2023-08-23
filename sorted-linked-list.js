@@ -1,4 +1,3 @@
-import { Node } from './node.js'
 import LinkedList from './linked-list.js'
 
 /**
@@ -18,28 +17,27 @@ function defaultCompareFn(a, b) {
 }
 
 export default class SortedLinkedList extends LinkedList {
-  /** @type {import('./node.js').Node | null} */
-  #head
-  #count
-
+  /**
+   * @param {(a: number, b: number) => number} compareFn
+   */
   constructor(compareFn = defaultCompareFn) {
     super()
-    this.#head = null
-    this.#count = 0
     this.compareFn = compareFn
   }
 
   /**
    * @param {number} value
    * @param {number} index
+   * @timecomplexity O(n) where n is the length of the list
+   * @spacecomplexity O(1)
    */
   insert(value, index = 0) {
     if (this.size() === 0) {
-      const res = this._insert(value, index)
+      const res = super.insert(value, index)
       return res
     }
 
-    return this._insert(value, this.insertPosition(value))
+    return super.insert(value, this.insertPosition(value))
   }
 
   /**
@@ -47,7 +45,7 @@ export default class SortedLinkedList extends LinkedList {
    */
   insertPosition(value) {
     let index = 0
-    let current = this.#head
+    let current = this.head
 
     while (current) {
       if (this.compareFn(value, current.value) <= 0) {
@@ -59,52 +57,5 @@ export default class SortedLinkedList extends LinkedList {
     }
 
     return index
-  }
-
-  /**
-   * @param {number} value
-   * @param {number} index
-   * @timecomplexity O(n) where n is the length of the list
-   * @spacecomplexity O(1)
-   */
-  _insert(value, index) {
-    const current = this.getElementAt(index)
-    const previous = this.getElementAt(index - 1)
-    const node = new Node(value)
-
-    if (previous) {
-      previous.next = node
-    } else {
-      this.#head = node
-    }
-
-    if (current) {
-      node.next = current
-    }
-
-    this.#count++
-    return true
-  }
-
-  /**
-   * @param {number} index
-   */
-  getElementAt(index) {
-    if (index < 0 || index > this.#count) {
-      return undefined
-    }
-
-    let current = this.#head
-    let count = 0
-
-    while (current) {
-      if (index === count) {
-        break
-      }
-      count++
-      current = current.next
-    }
-
-    return current
   }
 }
