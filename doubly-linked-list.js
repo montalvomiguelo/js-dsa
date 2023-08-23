@@ -120,4 +120,52 @@ export default class DoublyLinkedList extends LinkedList {
   getTail() {
     return this.tail
   }
+
+  /**
+   * @param {number} value
+   * @timecomplexity O(1)
+   */
+  push(value) {
+    const node = new DoublyNode(value)
+    const tail = this.getTail()
+
+    if (!tail) {
+      this.tail = node
+      this.head = node
+    } else {
+      node.prev = tail
+      tail.next = node
+      this.tail = node
+    }
+
+    this.count++
+  }
+
+  /**
+   * @timecomplexity O(1)
+   */
+  pop() {
+    const tail = this.getTail()
+
+    if (!tail) {
+      return
+    } else {
+      this.count--
+      const prev = tail.prev
+      if (prev) {
+        prev.next = null
+        tail.prev = null
+      } else {
+        this.tail = null
+        this.head = null
+      }
+      return tail
+    }
+  }
+
+  clear() {
+    this.head = null
+    this.tail = null
+    this.count = 0
+  }
 }
