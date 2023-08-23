@@ -2,12 +2,12 @@ import { Node } from './node.js'
 
 export default class LinkedList {
   /** @type {Node | null} */
-  #head
-  #count
+  head
+  count
 
   constructor() {
-    this.#head = null
-    this.#count = 0
+    this.head = null
+    this.count = 0
   }
 
   /**
@@ -15,14 +15,14 @@ export default class LinkedList {
    */
   push(value) {
     const node = new Node(value)
-    this.#count++
+    this.count++
 
-    if (!this.#head) {
-      this.#head = node
+    if (!this.head) {
+      this.head = node
       return
     }
 
-    let current = this.#head
+    let current = this.head
 
     while (current.next) {
       current = current.next
@@ -32,7 +32,7 @@ export default class LinkedList {
   }
 
   size() {
-    return this.#count
+    return this.count
   }
 
   isEmpty() {
@@ -43,7 +43,7 @@ export default class LinkedList {
    * @param {number} value
    */
   indexOf(value) {
-    let current = this.#head
+    let current = this.head
     let index = 0
 
     while (current) {
@@ -61,11 +61,11 @@ export default class LinkedList {
    * @param {number} index
    */
   getElementAt(index) {
-    if (index < 0 || index > this.#count) {
+    if (index < 0 || index > this.count) {
       return undefined
     }
 
-    let current = this.#head
+    let current = this.head
     let count = 0
 
     while (current) {
@@ -91,12 +91,12 @@ export default class LinkedList {
     }
 
     if (!previous) {
-      this.#head = current.next
+      this.head = current.next
     } else {
       previous.next = current.next
     }
 
-    this.#count--
+    this.count--
     return current
   }
 
@@ -118,21 +118,21 @@ export default class LinkedList {
     if (previous) {
       previous.next = node
     } else {
-      this.#head = node
+      this.head = node
     }
 
     if (current) {
       node.next = current
     }
 
-    this.#count++
+    this.count++
     return true
   }
 
   toString() {
     const result = []
 
-    let node = this.#head
+    let node = this.head
 
     while (node) {
       result.push(node.value)
@@ -140,5 +140,9 @@ export default class LinkedList {
     }
 
     return result.join(',')
+  }
+
+  getHead() {
+    return this.head
   }
 }

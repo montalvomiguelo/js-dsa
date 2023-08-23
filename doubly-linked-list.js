@@ -3,16 +3,14 @@ import { DoublyNode } from './doubly-node.js'
 
 export default class DoublyLinkedList extends LinkedList {
   /** @type {DoublyNode | null} */
-  #head
+  head
   /** @type {DoublyNode | null} */
-  #tail
-  #count
+  tail
 
   constructor() {
     super()
-    this.#head = null
-    this.#tail = null
-    this.#count = 0
+    this.head = null
+    this.tail = null
   }
 
   /**
@@ -26,42 +24,38 @@ export default class DoublyLinkedList extends LinkedList {
     const prev = this.getElementAt(index - 1)
     const current = this.getElementAt(index)
 
-    if (index < 0 || index > this.#count) {
+    if (index < 0 || index > this.count) {
       return false
     }
 
     if (!prev) {
-      this.#head = node
+      this.head = node
     } else {
       prev.next = node
       node.prev = prev
     }
 
     if (!current) {
-      this.#tail = node
+      this.tail = node
     } else {
       node.next = current
       current.prev = node
     }
 
-    this.#count++
+    this.count++
 
     return true
-  }
-
-  size() {
-    return this.#count
   }
 
   /**
    * @param {number} index
    */
   getElementAt(index) {
-    if (index < 0 || index > this.#count) {
+    if (index < 0 || index > this.count) {
       return undefined
     }
 
-    let current = this.#head
+    let current = this.head
     let count = 0
 
     while (current) {
@@ -88,8 +82,8 @@ export default class DoublyLinkedList extends LinkedList {
     }
 
     if (!prev) {
-      this.#head = next
-      this.#tail = prev
+      this.head = next
+      this.tail = prev
 
       if (next) {
         next.prev = null
@@ -99,7 +93,7 @@ export default class DoublyLinkedList extends LinkedList {
     }
 
     if (!next) {
-      this.#head = prev
+      this.head = prev
 
       if (prev) {
         prev.next = null
@@ -115,15 +109,11 @@ export default class DoublyLinkedList extends LinkedList {
       current.prev = null
     }
 
-    this.#count--
+    this.count--
     return current
   }
 
   getTail() {
-    return this.#tail
-  }
-
-  getHead() {
-    return this.#head
+    return this.tail
   }
 }
