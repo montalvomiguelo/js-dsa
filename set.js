@@ -69,6 +69,7 @@ export default class Set {
   /**
    * @param {Set} set
    * @timecomplexity O(n + m)
+   * @spacecomplexity O(n + m)
    */
   union(set) {
     const result = new Set()
