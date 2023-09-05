@@ -55,3 +55,16 @@ test('returns the values in the set', (t) => {
 
   t.like(set.values(), [1, 10])
 })
+
+test('unions two sets', (t) => {
+  const setA = new Set()
+  const setB = new Set()
+
+  setA.add(1)
+  setA.add(2)
+
+  setB.add(2)
+  setB.add(3)
+
+  t.like(setA.union(setB).values(), [1, 2, 3])
+})

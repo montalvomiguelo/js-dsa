@@ -65,4 +65,19 @@ export default class Set {
 
     return values
   }
+
+  /**
+   * @param {Set} set
+   * @timecomplexity O(n + m)
+   */
+  union(set) {
+    const result = new Set()
+    for (const value of this.values()) {
+      result.add(value)
+    }
+    for (const value of set.values()) {
+      result.add(value)
+    }
+    return result
+  }
 }
