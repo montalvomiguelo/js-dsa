@@ -68,3 +68,18 @@ test('unions two sets', (t) => {
 
   t.like(setA.union(setB).values(), [1, 2, 3])
 })
+
+test('intersects two sets', (t) => {
+  const setA = new Set()
+  const setB = new Set()
+
+  setA.add(1)
+  setA.add(2)
+  setA.add(3)
+
+  setB.add(2)
+  setB.add(3)
+  setB.add(4)
+
+  t.like(setA.intersection(setB).values(), [2, 3])
+})

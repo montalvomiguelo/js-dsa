@@ -81,4 +81,22 @@ export default class Set {
     }
     return result
   }
+
+  /**
+   * @param {Set} set
+   * @timecomplexity O(n)
+   * @spacecomplexity O(n)
+   */
+  intersection(set) {
+    if (set.size() < this.size()) {
+      return set.union(this)
+    }
+    const result = new Set()
+    for (const value of this.values()) {
+      if (set.has(value)) {
+        result.add(value)
+      }
+    }
+    return result
+  }
 }
