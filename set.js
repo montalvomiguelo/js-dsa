@@ -114,4 +114,23 @@ export default class Set {
     }
     return result
   }
+
+  /**
+   * @param {Set} set
+   * @timecomplexity O(n)
+   * @spacecomplexity O(1)
+   */
+  isSubsetOf(set) {
+    if (this.size() > set.size()) {
+      return false
+    }
+
+    for (const value of this.values()) {
+      if (!set.has(value)) {
+        return false
+      }
+    }
+
+    return true
+  }
 }

@@ -98,3 +98,25 @@ test('difference between two sets', (t) => {
 
   t.like(setA.difference(setB).values(), [1])
 })
+
+test('subset of another set', (t) => {
+  const setA = new Set()
+  const setB = new Set()
+  const setC = new Set()
+
+  setA.add(1)
+  setA.add(2)
+
+  setB.add(1)
+  setB.add(2)
+  setB.add(3)
+
+  setC.add(2)
+  setC.add(3)
+  setC.add(4)
+
+  t.is(setA.isSubsetOf(setB), true)
+  t.is(setA.isSubsetOf(setC), false)
+  t.is(setB.isSubsetOf(setA), false)
+  t.is(setB.isSubsetOf(setC), false)
+})
