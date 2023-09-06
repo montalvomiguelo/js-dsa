@@ -99,4 +99,19 @@ export default class Set {
     }
     return result
   }
+
+  /**
+   * @param {Set} set
+   * @timecomplexity O(n)
+   * @spacecomplexity O(n)
+   */
+  difference(set) {
+    const result = new Set()
+    for (const value of this.values()) {
+      if (!set.has(value)) {
+        result.add(value)
+      }
+    }
+    return result
+  }
 }
