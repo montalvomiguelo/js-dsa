@@ -28,4 +28,12 @@ export default class Dictionary {
     this.table[tableKey] = valuePair
     return true
   }
+
+  /**
+   * @param {T} key
+   */
+  hasKey(key) {
+    const tableKey = this.toStrFn(key)
+    return this.table[tableKey] !== undefined
+  }
 }
