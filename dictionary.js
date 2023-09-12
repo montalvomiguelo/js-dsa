@@ -36,4 +36,15 @@ export default class Dictionary {
     const tableKey = this.toStrFn(key)
     return this.table[tableKey] !== undefined
   }
+
+  /**
+   * @param {T} key
+   */
+  remove(key) {
+    if (!this.hasKey(key)) {
+      delete this.table[this.toStrFn(key)]
+      return false
+    }
+    return true
+  }
 }

@@ -13,3 +13,10 @@ test('hasKey', (t) => {
   t.is(dictionary.hasKey('foo'), true)
   t.is(dictionary.hasKey('bar'), false)
 })
+
+test('remove', (t) => {
+  const dictionary = new Dictionary()
+  dictionary.set('foo', 1)
+  t.is(dictionary.remove('foo'), true)
+  t.is(dictionary.remove('bar'), false)
+})
