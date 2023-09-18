@@ -54,4 +54,15 @@ export default class Dictionary {
   get(key) {
     return this.table[this.toStrFn(key)]?.value ?? undefined
   }
+
+  keyValues() {
+    const result = []
+    for (const key in this.table) {
+      if (!Object.prototype.hasOwnProperty.call(this.table, key)) {
+        continue
+      }
+      result.push(this.table[key])
+    }
+    return result
+  }
 }

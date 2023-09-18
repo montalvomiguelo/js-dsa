@@ -27,3 +27,13 @@ test('get', (t) => {
   t.is(dictionary.get('foo'), 1)
   t.is(dictionary.get('bar'), undefined)
 })
+
+test('keyValues', (t) => {
+  const dictionary = new Dictionary()
+  dictionary.set('foo', 1)
+  dictionary.set('bar', 2)
+  t.like(dictionary.keyValues(), [
+    { key: 'foo', value: 1 },
+    { key: 'bar', value: 2 },
+  ])
+})
