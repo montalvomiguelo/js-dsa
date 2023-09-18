@@ -37,3 +37,10 @@ test('keyValues', (t) => {
     { key: 'bar', value: 2 },
   ])
 })
+
+test('keys', (t) => {
+  const dictionary = new Dictionary()
+  dictionary.set('foo', 1)
+  dictionary.set('bar', 2)
+  t.deepEqual(dictionary.keys(), ['foo', 'bar'])
+})
