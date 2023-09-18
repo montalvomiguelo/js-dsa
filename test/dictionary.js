@@ -20,3 +20,10 @@ test('remove', (t) => {
   t.is(dictionary.remove('foo'), true)
   t.is(dictionary.remove('bar'), false)
 })
+
+test('get', (t) => {
+  const dictionary = new Dictionary()
+  dictionary.set('foo', 1)
+  t.is(dictionary.get('foo'), 1)
+  t.is(dictionary.get('bar'), undefined)
+})

@@ -47,4 +47,11 @@ export default class Dictionary {
     }
     return true
   }
+
+  /**
+   * @param {T} key
+   */
+  get(key) {
+    return this.table[this.toStrFn(key)]?.value ?? undefined
+  }
 }
