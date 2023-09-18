@@ -55,6 +55,10 @@ export default class Dictionary {
     return this.table[this.toStrFn(key)]?.value ?? undefined
   }
 
+  /**
+   * @timecomplexity O(n) where n is the number of items in the dictionary
+   * @spacecomplexity O(n)
+   */
   keyValues() {
     const result = []
     for (const key in this.table) {
@@ -77,6 +81,21 @@ export default class Dictionary {
         continue
       }
       result.push(key)
+    }
+    return result
+  }
+
+  /**
+   * @timecomplexity O(n) where n is the number of items in the dictionary
+   * @spacecomplexity O(n)
+   */
+  values() {
+    const result = []
+    for (const key in this.table) {
+      if (!Object.prototype.hasOwnProperty.call(this.table, key)) {
+        continue
+      }
+      result.push(this.table[key].value)
     }
     return result
   }
