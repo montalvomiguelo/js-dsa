@@ -51,3 +51,16 @@ test('values', (t) => {
   dictionary.set('bar', 2)
   t.deepEqual(dictionary.values(), [1, 2])
 })
+
+test('forEach', (t) => {
+  let count = 0
+  const dictionary = new Dictionary()
+  dictionary.set('foo', 1)
+  dictionary.set('bar', 2)
+  const callback = () => {
+    count++
+    return true
+  }
+  dictionary.forEach(callback)
+  t.is(count, 2)
+})

@@ -99,4 +99,19 @@ export default class Dictionary {
     }
     return result
   }
+
+  /**
+   * @template {(t: T, u: U) => ReturnType<C>} C
+   * @param {C} callback
+   */
+  forEach(callback) {
+    const keyValues = this.keyValues()
+    for (let i = 0; i < keyValues.length; i++) {
+      const item = keyValues[i]
+      const result = callback(item.key, item.value)
+      if (!result) {
+        break
+      }
+    }
+  }
 }
