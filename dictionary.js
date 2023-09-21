@@ -124,4 +124,8 @@ export default class Dictionary {
     }
     return count
   }
+
+  isEmpty() {
+    return this.size() === 0
+  }
 }

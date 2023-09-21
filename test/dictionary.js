@@ -71,3 +71,11 @@ test('size', (t) => {
   dictionary.set('bar', 2)
   t.is(dictionary.size(), 2)
 })
+
+test('isEmpty', (t) => {
+  const dictionary = new Dictionary()
+  t.is(dictionary.isEmpty(), true)
+  dictionary.set('foo', 1)
+  dictionary.set('bar', 2)
+  t.is(dictionary.isEmpty(), false)
+})
