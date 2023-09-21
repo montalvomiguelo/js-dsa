@@ -87,3 +87,11 @@ test('clear', (t) => {
   dictionary.clear()
   t.is(dictionary.isEmpty(), true)
 })
+
+test('toString', (t) => {
+  const dictionary = new Dictionary()
+  t.is(dictionary.toString(), '')
+  dictionary.set('foo', 1)
+  dictionary.set('bar', 2)
+  t.is(dictionary.toString(), '[foo: 1],[bar: 2]')
+})

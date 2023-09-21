@@ -132,4 +132,17 @@ export default class Dictionary {
   clear() {
     this.table = {}
   }
+
+  /**
+   * @timecomplexity O(n * m)
+   * @spacecomplexity O(n * m)
+   */
+  toString() {
+    const result = []
+    const keyValues = this.keyValues()
+    for (const entry of keyValues) {
+      result.push(entry.toString())
+    }
+    return result.join(',')
+  }
 }
