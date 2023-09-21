@@ -114,4 +114,14 @@ export default class Dictionary {
       }
     }
   }
+
+  size() {
+    let count = 0
+    for (const key in this.table) {
+      if (Object.prototype.hasOwnProperty.call(this.table, key)) {
+        count++
+      }
+    }
+    return count
+  }
 }

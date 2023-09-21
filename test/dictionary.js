@@ -64,3 +64,10 @@ test('forEach', (t) => {
   dictionary.forEach(callback)
   t.is(count, 2)
 })
+
+test('size', (t) => {
+  const dictionary = new Dictionary()
+  dictionary.set('foo', 1)
+  dictionary.set('bar', 2)
+  t.is(dictionary.size(), 2)
+})
