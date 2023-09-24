@@ -20,3 +20,10 @@ test('get', (t) => {
   })
   t.is(hashTable.get('LA'), undefined)
 })
+
+test('remove', (t) => {
+  const hashTable = new HashTable()
+  hashTable.put('Wes', 'Barrel')
+  t.is(hashTable.remove('Wes'), true)
+  t.is(hashTable.remove('LA'), false)
+})

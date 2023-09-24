@@ -68,4 +68,17 @@ export default class HashTable {
     }
     return valuePair
   }
+
+  /**
+   * @param {T} key
+   */
+  remove(key) {
+    const hashTableKey = this.hashCode(key)
+    const valuePair = this.table[hashTableKey]
+    if (!valuePair) {
+      return false
+    }
+    delete this.table[hashTableKey]
+    return true
+  }
 }
