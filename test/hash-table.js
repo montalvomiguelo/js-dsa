@@ -10,3 +10,13 @@ test('put', (t) => {
   const hashTable = new HashTable()
   t.is(hashTable.put('Wes', 'Barrel'), true)
 })
+
+test('get', (t) => {
+  const hashTable = new HashTable()
+  hashTable.put('Wes', 'Barrel')
+  t.like(hashTable.get('Wes'), {
+    key: 'Wes',
+    value: 'Barrel',
+  })
+  t.is(hashTable.get('LA'), undefined)
+})

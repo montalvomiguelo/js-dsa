@@ -56,4 +56,16 @@ export default class HashTable {
     this.table[tableKey] = valuePair
     return true
   }
+
+  /**
+   * @param {T} key
+   */
+  get(key) {
+    const hashTableKey = this.hashCode(key)
+    const valuePair = this.table[hashTableKey]
+    if (!valuePair) {
+      return
+    }
+    return valuePair
+  }
 }
