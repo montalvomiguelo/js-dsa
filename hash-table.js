@@ -81,4 +81,16 @@ export default class HashTable {
     delete this.table[hashTableKey]
     return true
   }
+
+  /**
+   * @timecomplexity O(n * m)
+   * @spacecomplexity O(n * m)
+   */
+  toString() {
+    const result = []
+    for (const [hashTableKey, valuePair] of Object.entries(this.table)) {
+      result.push(`{${hashTableKey} => ${valuePair.toString()}}`)
+    }
+    return result.join()
+  }
 }

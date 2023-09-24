@@ -27,3 +27,9 @@ test('remove', (t) => {
   t.is(hashTable.remove('Wes'), true)
   t.is(hashTable.remove('LA'), false)
 })
+
+test('toString', (t) => {
+  const hashTable = new HashTable()
+  hashTable.put('Wes', 'Barrel')
+  t.is(hashTable.toString(), `{4 => [Wes: Barrel]}`)
+})
