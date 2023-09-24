@@ -1,8 +1,16 @@
 import { defaultToString } from './utils.js'
+import ValuePair from './value-pair.js'
 
+/**
+ * @template T, U
+ */
 export default class HashTable {
-  /** @private */
+  /** @protected */
   toStrFn
+  /**
+   * @type Object.<number, ValuePair<T, U>>
+   * @protected
+   */
   table
 
   constructor(toStrFn = defaultToString) {
@@ -11,8 +19,8 @@ export default class HashTable {
   }
 
   /**
-   * @template T
    * @param {T} key
+   * @private
    */
   loseloseHashCode(key) {
     if (typeof key === 'number') {
@@ -26,5 +34,26 @@ export default class HashTable {
       i++
     }
     return hash % 23
+  }
+
+  /**
+   * @param {T} key
+   */
+  hashCode(key) {
+    return this.loseloseHashCode(key)
+  }
+
+  /**
+   * @param {T} key
+   * @param {U} value
+   */
+  put(key, value) {
+    if (!key || !value) {
+      return false
+    }
+    const valuePair = new ValuePair(key, value)
+    const tableKey = this.hashCode(key)
+    this.table[tableKey] = valuePair
+    return true
   }
 }
