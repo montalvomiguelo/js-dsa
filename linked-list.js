@@ -1,7 +1,7 @@
 import { Node } from './node.js'
 
 export default class LinkedList {
-  /** @type {Node | null} */
+  /** @type {Node<number> | null} */
   head
   count
 

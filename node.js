@@ -1,14 +1,15 @@
 /**
+ * @template T
  * @class
  */
 export class Node {
-  /** @type {number} */
+  /** @type {T} */
   value
-  /** @type {Node | null} */
+  /** @type {Node<T> | null} */
   next
 
   /**
-   * @param {number} value
+   * @param {T} value
    */
   constructor(value) {
     this.value = value

@@ -2,7 +2,7 @@ import { Node } from './node.js'
 import LinkedList from './linked-list.js'
 
 export default class CircularLinkedList extends LinkedList {
-  /** @type {Node | null} */
+  /** @type {Node<number> | null} */
   tail
 
   constructor() {

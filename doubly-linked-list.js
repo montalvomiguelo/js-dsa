@@ -2,9 +2,9 @@ import LinkedList from './linked-list.js'
 import { DoublyNode } from './doubly-node.js'
 
 export default class DoublyLinkedList extends LinkedList {
-  /** @type {DoublyNode | null} */
+  /** @type {DoublyNode<number> | null} */
   head
-  /** @type {DoublyNode | null} */
+  /** @type {DoublyNode<number> | null} */
   tail
 
   constructor() {

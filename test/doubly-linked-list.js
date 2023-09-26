@@ -3,9 +3,9 @@ import DoublyLinkedList from '../doubly-linked-list.js'
 
 test('inserts an element at any position of the list', (t) => {
   const list = new DoublyLinkedList()
-  /** @type {import('../doubly-node').DoublyNode | null} */
+  /** @type {import('../doubly-node').DoublyNode<number> | null} */
   let head
-  /** @type {import('../doubly-node').DoublyNode | null} */
+  /** @type {import('../doubly-node').DoublyNode<number> | null} */
   let tail
 
   t.is(list.insert(1, 0), true)
