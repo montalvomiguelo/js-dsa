@@ -1,10 +1,14 @@
 import LinkedList from './linked-list.js'
 import { DoublyNode } from './doubly-node.js'
 
+/**
+ * @template T
+ * @extends LinkedList<T>
+ */
 export default class DoublyLinkedList extends LinkedList {
-  /** @type {DoublyNode<number> | null} */
+  /** @type {DoublyNode<T> | null} */
   head
-  /** @type {DoublyNode<number> | null} */
+  /** @type {DoublyNode<T> | null} */
   tail
 
   constructor() {
@@ -14,7 +18,7 @@ export default class DoublyLinkedList extends LinkedList {
   }
 
   /**
-   * @param {number} value
+   * @param {T} value
    * @param {number} index
    * @timecomplexity O(n) where n is the length of the list
    * @spacecomplexity O(1)
@@ -122,7 +126,7 @@ export default class DoublyLinkedList extends LinkedList {
   }
 
   /**
-   * @param {number} value
+   * @param {T} value
    * @timecomplexity O(1)
    */
   push(value) {

@@ -16,6 +16,10 @@ function defaultCompareFn(a, b) {
   return 1
 }
 
+/**
+ * @template {number} T
+ * @extends LinkedList<T>
+ */
 export default class SortedLinkedList extends LinkedList {
   /**
    * @param {(a: number, b: number) => number} compareFn
@@ -26,7 +30,7 @@ export default class SortedLinkedList extends LinkedList {
   }
 
   /**
-   * @param {number} value
+   * @param {T} value
    * @param {number} index
    * @timecomplexity O(n) where n is the length of the list
    * @spacecomplexity O(1)
@@ -41,7 +45,7 @@ export default class SortedLinkedList extends LinkedList {
   }
 
   /**
-   * @param {number} value
+   * @param {T} value
    */
   insertPosition(value) {
     let index = 0

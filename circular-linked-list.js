@@ -1,8 +1,12 @@
 import { Node } from './node.js'
 import LinkedList from './linked-list.js'
 
+/**
+ * @template T
+ * @extends LinkedList<T>
+ */
 export default class CircularLinkedList extends LinkedList {
-  /** @type {Node<number> | null} */
+  /** @type {Node<T> | null} */
   tail
 
   constructor() {
@@ -11,7 +15,7 @@ export default class CircularLinkedList extends LinkedList {
   }
 
   /**
-   * @param {number} value
+   * @param {T} value
    * @param {number} index
    * @timecomplexity O(n) where n is the number of nodes in the list
    * @spacecomplexity O(1)

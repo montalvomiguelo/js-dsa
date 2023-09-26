@@ -1,7 +1,10 @@
 import { Node } from './node.js'
 
+/**
+ * @template T
+ */
 export default class LinkedList {
-  /** @type {Node<number> | null} */
+  /** @type {Node<T> | null} */
   head
   count
 
@@ -11,7 +14,7 @@ export default class LinkedList {
   }
 
   /**
-   * @param {number} value
+   * @param {T} value
    */
   push(value) {
     const node = new Node(value)
@@ -101,7 +104,7 @@ export default class LinkedList {
   }
 
   /**
-   * @param {number} value
+   * @param {T} value
    * @param {number} index
    * @timecomplexity O(n) where n is the length of the list
    * @spacecomplexity O(1)
