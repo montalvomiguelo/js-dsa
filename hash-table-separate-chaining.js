@@ -45,6 +45,7 @@ export default class HashTableSeparateChaining {
   /**
    * @param {T} key
    * @param {U} value
+   * @timecomplexity O(n + m)
    */
   put(key, value) {
     if (!key || !value) {
@@ -55,5 +56,27 @@ export default class HashTableSeparateChaining {
     this.table[tableKey] ||= new LinkedList()
     this.table[tableKey]?.push(valuePair)
     return true
+  }
+
+  /**
+   * @param {T} key
+   * @timecomplexity O(n + m)
+   */
+  get(key) {
+    const tableKey = this.hashCode(key)
+    const linkedList = this.table[tableKey]
+    if (!linkedList) {
+      return
+    }
+    let current = linkedList.getHead()
+    let valuePair
+    while (current) {
+      if (current.value.key === key) {
+        valuePair = current.value.value
+        break
+      }
+      current = current.next
+    }
+    return valuePair
   }
 }
