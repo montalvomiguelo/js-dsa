@@ -8,7 +8,7 @@ export default class HashTableLinearProbing {
   /** @protected */
   toStrFn
   /**
-   * @type {Object<string, ValuePair<T, U>>}
+   * @type {Object<string, ValuePair<T, U>|undefined>}
    * @protected
    */
   table
@@ -80,7 +80,10 @@ export default class HashTableLinearProbing {
       idx++
       valuePair = this.table[idx]
     }
-    return this.table[idx].value
+    if (!valuePair) {
+      return
+    }
+    return valuePair.value
   }
 
   /**
