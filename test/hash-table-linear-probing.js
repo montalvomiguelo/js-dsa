@@ -14,3 +14,12 @@ test('get', (t) => {
   t.is(hashTable.get('Jonathan'), 'jonathan@email.com')
   t.is(hashTable.get('Jamie'), 'jamie@email.com')
 })
+
+test('remove', (t) => {
+  const hashTable = new HashTableLinearProbing()
+  hashTable.put('Jonathan', 'jonathan@email.com')
+  hashTable.put('Jamie', 'jamie@email.com')
+  t.is(hashTable.remove('Jonathan'), true)
+  t.is(hashTable.get('Jonathan'), undefined)
+  t.is(hashTable.remove('Miguel'), false)
+})
