@@ -62,4 +62,24 @@ export default class HashTableLinearProbing {
 
     return true
   }
+
+  /**
+   * @param {T} key
+   */
+  get(key) {
+    const tableKey = this.hashCode(key)
+    let valuePair = this.table[tableKey]
+    if (!valuePair) {
+      return
+    }
+    let idx = tableKey
+    while (valuePair) {
+      if (valuePair.key === key) {
+        break
+      }
+      idx++
+      valuePair = this.table[idx]
+    }
+    return this.table[idx].value
+  }
 }
