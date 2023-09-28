@@ -2,7 +2,7 @@ import { defaultToString } from './utils.js'
 import ValuePair from './value-pair.js'
 
 /**
- * @template T, U
+ * @template T,U
  */
 export default class HashTable {
   /** @protected */

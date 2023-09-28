@@ -1,5 +1,5 @@
 /**
- * @template T, U
+ * @template T,U
  */
 export default class ValuePair {
   /**
