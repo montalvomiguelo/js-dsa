@@ -79,4 +79,33 @@ export default class HashTableSeparateChaining {
     }
     return valuePair
   }
+
+  /**
+   * @param {T} key
+   * @timecomplexity O(n + m)
+   */
+  remove(key) {
+    const tableKey = this.hashCode(key)
+    const linkedList = this.table[tableKey]
+    if (!linkedList) {
+      return false
+    }
+    let current = linkedList.getHead()
+    let index = -1
+    while (current) {
+      if (current.value.key === key) {
+        index++
+        linkedList.removeAt(index)
+        break
+      }
+      current = current.next
+    }
+    if (index === -1) {
+      return false
+    }
+    if (linkedList.isEmpty()) {
+      delete this.table[tableKey]
+    }
+    return true
+  }
 }

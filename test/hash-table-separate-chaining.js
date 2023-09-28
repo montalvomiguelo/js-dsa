@@ -16,3 +16,13 @@ test('get', (t) => {
   t.is(hashTable.get('Jamie'), 'jamie@email.com')
   t.is(hashTable.get('Miguel'), undefined)
 })
+
+test('remove', (t) => {
+  const hashTable = new HashTableSeparateChaining()
+  hashTable.put('Ygritte', 'ygritte@email.com')
+  hashTable.put('Jonathan', 'jonathan@email.com')
+  hashTable.put('Jamie', 'jamie@email.com')
+  t.is(hashTable.remove('Jonathan'), true)
+  t.is(hashTable.remove('Miguel'), false)
+  t.is(hashTable.get('Jonathan'), undefined)
+})
