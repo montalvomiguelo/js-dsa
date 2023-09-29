@@ -99,11 +99,32 @@ export default class HashTableLinearProbing {
     while (valuePair) {
       if (key === valuePair.key) {
         delete this.table[idx]
+        this.verifyRemoveSideEffect(key, idx)
         break
       }
       idx++
       valuePair = this.table[idx]
     }
     return true
+  }
+
+  /**
+   * @param {T} lastRemovedKey
+   * @param {number} lastRemovedIdx
+   */
+  verifyRemoveSideEffect(lastRemovedKey, lastRemovedIdx) {
+    const tableKey = this.hashCode(lastRemovedKey)
+    let idx = lastRemovedIdx + 1
+    let valuePair = this.table[idx]
+    while (valuePair) {
+      const hashCode = this.hashCode(valuePair.key)
+      if (hashCode <= tableKey || hashCode <= lastRemovedIdx) {
+        this.table[lastRemovedIdx] = valuePair
+        delete this.table[idx]
+        lastRemovedIdx = idx
+      }
+      idx++
+      valuePair = this.table[idx]
+    }
   }
 }
