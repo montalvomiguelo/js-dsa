@@ -39,8 +39,20 @@ export default class HashTable {
   /**
    * @param {T} key
    */
+  dbj2HashCode(key) {
+    const tableKey = this.toStrFn(key)
+    let hash = 5381
+    for (let i = 0; i < tableKey.length; i++) {
+      hash = hash * 33 + tableKey.charCodeAt(i)
+    }
+    return hash % 1013
+  }
+
+  /**
+   * @param {T} key
+   */
   hashCode(key) {
-    return this.loseloseHashCode(key)
+    return this.dbj2HashCode(key)
   }
 
   /**

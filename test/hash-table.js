@@ -3,7 +3,7 @@ import HashTable from '../hash-table.js'
 
 test('hashCode', (t) => {
   const hashTable = new HashTable()
-  t.is(hashTable.hashCode('Wes'), 4)
+  t.is(hashTable.hashCode('Wes'), 292)
 })
 
 test('put', (t) => {
@@ -31,5 +31,5 @@ test('remove', (t) => {
 test('toString', (t) => {
   const hashTable = new HashTable()
   hashTable.put('Wes', 'Barrel')
-  t.is(hashTable.toString(), `{4 => [Wes: Barrel]}`)
+  t.is(hashTable.toString(), `{292 => [Wes: Barrel]}`)
 })
