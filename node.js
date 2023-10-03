@@ -3,7 +3,6 @@
  * @class
  */
 export class Node {
-  /** @type {T} */
   value
   /** @type {Node<T> | null} */
   next
@@ -14,5 +13,25 @@ export class Node {
   constructor(value) {
     this.value = value
     this.next = null
+  }
+}
+
+/**
+ * @template T
+ */
+export class TreeNode {
+  key
+  /** @type TreeNode<T> | null */
+  left
+  /** @type TreeNode<T> | null */
+  right
+
+  /**
+   * @param {T} key
+   */
+  constructor(key) {
+    this.key = key
+    this.left = null
+    this.right = null
   }
 }

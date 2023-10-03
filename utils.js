@@ -12,3 +12,19 @@ export function defaultToString(item) {
   }
   return item.toString()
 }
+
+/**
+ * @param {number} a
+ * @param {number} b
+ */
+export function defaultCompareFn(a, b) {
+  if (a === b) {
+    return 0
+  }
+
+  if (a < b) {
+    return -1
+  }
+
+  return 1
+}
