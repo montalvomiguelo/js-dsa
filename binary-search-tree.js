@@ -66,4 +66,18 @@ export default class BinarySearchTree {
       this.inOrderTraverseNode(node.right, callback)
     }
   }
+
+  /**
+   * @param {(node: Node<T>) => void} callback
+   * @param {Node<T>|null} node
+   * @timecomplexity O(n) where n is the number of nodes
+   * @spacecomplexity O(h) where h is the height of the tree
+   */
+  preOrderTraverse(callback, node = this.root) {
+    if (node) {
+      callback(node)
+      this.preOrderTraverse(callback, node.left)
+      this.preOrderTraverse(callback, node.right)
+    }
+  }
 }

@@ -43,3 +43,19 @@ test('inOrderTraverse', (t) => {
   })
   t.like(visited, [1, 3, 4, 6, 8, 10])
 })
+
+test('preOrderTraverse', (t) => {
+  const tree = new BinarySearchTree()
+  /** @type {number[]} */
+  const visited = []
+  tree.insert(8)
+  tree.insert(3)
+  tree.insert(10)
+  tree.insert(1)
+  tree.insert(6)
+  tree.insert(4)
+  tree.preOrderTraverse((node) => {
+    visited.push(node.key)
+  })
+  t.like(visited, [8, 3, 1, 6, 4, 10])
+})
