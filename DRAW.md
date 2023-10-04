@@ -9,3 +9,4 @@
 - [tree-terminology](https://shop.montalvomiguelo.com/cdn/shop/files/tree-terminology.png?v=2186446901902019113)
 - [in-order-traversal](https://shop.montalvomiguelo.com/cdn/shop/files/in-order-traversal.png?v=13098420924220248555)
 - [pre-order-traversal](https://shop.montalvomiguelo.com/cdn/shop/files/pre-order-traversal.png?v=11296768532080658642)
+- [post-order-traversal](https://shop.montalvomiguelo.com/cdn/shop/files/post-order-traversal.png?v=12561639599662754124)
