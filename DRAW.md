@@ -7,3 +7,4 @@
 - [doubly-linked-list](https://shop.montalvomiguelo.com/cdn/shop/files/doubly-linked-list.png?v=6558484561892357333)
 - [circular-linked-list](https://shop.montalvomiguelo.com/cdn/shop/files/circular-linked-list.png?v=13371652198609218683)
 - [tree-terminology](https://shop.montalvomiguelo.com/cdn/shop/files/tree-terminology.png?v=2186446901902019113)
+- [in-order-traversal](https://shop.montalvomiguelo.com/cdn/shop/files/in-order-traversal.png?v=13098420924220248555)
