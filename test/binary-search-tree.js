@@ -75,3 +75,14 @@ test('postOrderTraverse', (t) => {
   })
   t.like(visited, [1, 4, 6, 3, 10, 8])
 })
+
+test('min', (t) => {
+  const tree = new BinarySearchTree()
+  tree.insert(8)
+  tree.insert(3)
+  tree.insert(10)
+  tree.insert(1)
+  tree.insert(6)
+  tree.insert(4)
+  t.like(tree.min(), { key: 1, left: null, right: null })
+})

@@ -95,4 +95,18 @@ export default class BinarySearchTree {
       callback(node)
     }
   }
+
+  /**
+   * @description
+   * Timecomplexity O(log n) where n is the number of nodes
+   * Spacecomplexity O(h) where h is the height of the tree
+   */
+  min(node = this.root) {
+    while (node) {
+      if (!node.left) {
+        return node
+      }
+      node = node.left
+    }
+  }
 }
