@@ -109,4 +109,18 @@ export default class BinarySearchTree {
       node = node.left
     }
   }
+
+  /**
+   * @description
+   * Timecomplexity O(log n) where n is the number of nodes
+   * Spacecomplexity O(h) where h is the height of the tree
+   */
+  max(node = this.root) {
+    while (node) {
+      if (!node.right) {
+        return node
+      }
+      node = node.right
+    }
+  }
 }

@@ -86,3 +86,14 @@ test('min', (t) => {
   tree.insert(4)
   t.like(tree.min(), { key: 1, left: null, right: null })
 })
+
+test('max', (t) => {
+  const tree = new BinarySearchTree()
+  tree.insert(8)
+  tree.insert(3)
+  tree.insert(10)
+  tree.insert(1)
+  tree.insert(6)
+  tree.insert(4)
+  t.like(tree.max(), { key: 10, left: null, right: null })
+})
