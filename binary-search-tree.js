@@ -123,4 +123,25 @@ export default class BinarySearchTree {
       node = node.right
     }
   }
+
+  /**
+   * @param {T} key
+   */
+  search(key) {
+    let node = this.root
+    let result = null
+
+    while (node) {
+      if (this.compareFn(key, node.key) === -1) {
+        node = node.left
+      } else if (this.compareFn(key, node.key) === 1) {
+        node = node.right
+      } else {
+        result = node
+        break
+      }
+    }
+
+    return result
+  }
 }
