@@ -27,8 +27,9 @@ export default class BinarySearchTree {
   /**
    * @param {Node<T>} node
    * @param {T} key
-   * @timecomplexity Average O(log n) where n is the number of nodes, Worst O(n)
-   * @spacecomplexity O(h) where h is the height of the tree
+   * @description
+   * Timecomplexity average O(log n) where n is the number of nodes, worst O(n)
+   * Spacecomplexity O(h) where h is the height of the tree
    */
   insertNode(node, key) {
     if (this.compareFn(key, node.key) === -1) {
@@ -56,8 +57,9 @@ export default class BinarySearchTree {
   /**
    * @param {Node<T>|null} node
    * @param {(node: Node<T>) => void} callback}
-   * @timecomplexity O(n) where n is the number of nodes
-   * @spacecomplexity O(h) where h is the height of the tree
+   * @description
+   * Timecomplexity O(n) where n is the number of nodes
+   * Spacecomplexity O(h) where h is the height of the tree
    */
   inOrderTraverseNode(node, callback) {
     if (node) {
@@ -70,8 +72,9 @@ export default class BinarySearchTree {
   /**
    * @param {(node: Node<T>) => void} callback
    * @param {Node<T>|null} node
-   * @timecomplexity O(n) where n is the number of nodes
-   * @spacecomplexity O(h) where h is the height of the tree
+   * @description
+   * Timecomplexity O(n) where n is the number of nodes
+   * Spacecomplexity O(h) where h is the height of the tree
    */
   preOrderTraverse(callback, node = this.root) {
     if (node) {
@@ -98,7 +101,7 @@ export default class BinarySearchTree {
 
   /**
    * @description
-   * Timecomplexity O(log n) where n is the number of nodes
+   * Timecomplexity average O(log n) where n is the number of nodes, worst O(n)
    * Spacecomplexity O(h) where h is the height of the tree
    */
   min(node = this.root) {
@@ -112,7 +115,7 @@ export default class BinarySearchTree {
 
   /**
    * @description
-   * Timecomplexity O(log n) where n is the number of nodes
+   * Timecomplexity average O(log n) where n is the number of nodes, worst O(n)
    * Spacecomplexity O(h) where h is the height of the tree
    */
   max(node = this.root) {
@@ -126,6 +129,9 @@ export default class BinarySearchTree {
 
   /**
    * @param {T} key
+   * @description
+   * Timecomplexity average O(log n) where n is the number of nodes, worst O(n)
+   * Spacecomplexity O(h) where h is the height of the tree
    */
   search(key) {
     let node = this.root
