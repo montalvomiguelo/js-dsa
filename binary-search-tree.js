@@ -154,14 +154,23 @@ export default class BinarySearchTree {
   /**
    * @param {T} key
    */
-  remove(key, node = this.root) {
+  remove(key) {
+    this.root = this.removeNode(this.root, key)
+    return this.root
+  }
+
+  /**
+   * @param {Node<T> | null} node
+   * @param {T} key
+   */
+  removeNode(node, key) {
     if (!node) {
       return node
     }
     if (this.compareFn(key, node.key) === -1) {
-      node.left = this.remove(key, node.left)
+      node.left = this.removeNode(node.left, key)
     } else if (this.compareFn(key, node.key) === 1) {
-      node.right = this.remove(key, node.right)
+      node.right = this.removeNode(node.right, key)
     } else {
       // node is leaf
       if (!node.left && !node.right) {
