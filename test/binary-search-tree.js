@@ -134,3 +134,28 @@ test('remove a leaf node', (t) => {
     right: { key: 10, left: null, right: { key: 14, left: null, right: null } },
   })
 })
+
+test('remove a node with one child', (t) => {
+  const tree = new BinarySearchTree()
+  tree.insert(8)
+  tree.insert(3)
+  tree.insert(10)
+  tree.insert(1)
+  tree.insert(6)
+  tree.insert(4)
+  tree.insert(7)
+  tree.insert(14)
+  t.like(tree.remove(10), {
+    key: 8,
+    left: {
+      key: 3,
+      left: { key: 1, left: null, right: null },
+      right: {
+        key: 6,
+        left: { key: 4, left: null, right: null },
+        right: { key: 7, left: null, right: null },
+      },
+    },
+    right: { key: 14, left: null, right: null },
+  })
+})

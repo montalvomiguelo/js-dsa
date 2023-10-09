@@ -175,6 +175,11 @@ export default class BinarySearchTree {
       // node is leaf
       if (!node.left && !node.right) {
         node = null
+        // node has one child
+      } else if (!node.left) {
+        node = node.right
+      } else if (!node.right) {
+        node = node.left
       }
     }
     return node
