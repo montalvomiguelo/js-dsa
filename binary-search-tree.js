@@ -101,16 +101,17 @@ export default class BinarySearchTree {
 
   /**
    * @description
-   * Timecomplexity average O(log n) where n is the number of nodes, worst O(n)
-   * Spacecomplexity O(h) where h is the height of the tree
+   * Time complexity average O(log n) where n is the number of nodes, worst O(n)
+   * Space complexity O(h) where h is the height of the tree
    */
   min(node = this.root) {
     while (node) {
       if (!node.left) {
-        return node
+        break
       }
       node = node.left
     }
+    return node
   }
 
   /**
@@ -162,6 +163,9 @@ export default class BinarySearchTree {
   /**
    * @param {Node<T> | null} node
    * @param {T} key
+   * @description
+   * Time complexity O(log n) where n is the number of nodes in the tree
+   * Space complexity O(h)
    */
   removeNode(node, key) {
     if (!node) {
@@ -180,6 +184,13 @@ export default class BinarySearchTree {
         node = node.right
       } else if (!node.right) {
         node = node.left
+      } else {
+        // node has two children
+        const successor = this.min(node.right)
+        if (successor) {
+          node.key = successor.key
+          node.right = this.removeNode(node.right, successor.key)
+        }
       }
     }
     return node
