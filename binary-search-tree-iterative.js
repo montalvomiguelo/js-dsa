@@ -40,4 +40,26 @@ export default class BST {
     }
     return this
   }
+
+  /**
+   * @param {number} value
+   * @param {BST | null} node
+   * @description
+   * Average: O(log(n)) time | O(1) space
+   * Worst: O(n) time | O(1) space
+   */
+  contains(value, node = this) {
+    let result = false
+    while (node) {
+      if (value < node.value) {
+        node = node.left
+      } else if (value > node.value) {
+        node = node.right
+      } else {
+        result = true
+        break
+      }
+    }
+    return result
+  }
 }

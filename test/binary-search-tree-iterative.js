@@ -21,3 +21,14 @@ test('insert', (t) => {
     },
   })
 })
+
+test('contains', (t) => {
+  const bst = new BST(8)
+  bst.insert(3)
+  bst.insert(1)
+  bst.insert(4)
+  bst.insert(10)
+  bst.insert(14)
+  t.true(bst.contains(14))
+  t.false(bst.contains(7))
+})
