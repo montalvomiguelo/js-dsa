@@ -62,4 +62,67 @@ export default class BST {
     }
     return result
   }
+
+  /**
+   * @param {number} value
+   * @param {BST | null} node
+   * @param {BST | null} parent
+   * @description
+   * Average: O(log(n)) time | O(1) space
+   * Worst: O(n) time | O(1) space
+   */
+  remove(value, node = this, parent = null) {
+    while (node) {
+      if (value < node.value) {
+        parent = node
+        node = node.left
+      } else if (value > node.value) {
+        parent = node
+        node = node.right
+      } else {
+        // remove a leaf node
+        if (parent && !node.left && !node.right) {
+          if (value < parent.value) {
+            parent.left = null
+          } else {
+            parent.right = null
+          }
+          break
+        }
+        // remove a node with 1 child
+        if (parent && node.left && !node.right) {
+          parent.left = node.left
+          break
+        }
+        if (parent && node.right && !node.left) {
+          parent.right = node.right
+          break
+        }
+        // remove a node with 2 children
+        if (node.right) {
+          const min = node.right.min()
+          if (min) {
+            node.value = min.value
+            node.right.remove(node.value, node)
+          }
+        }
+      }
+    }
+    return this
+  }
+
+  /**
+   * @param {BST | null} node
+   */
+  min(node = this) {
+    while (node) {
+      if (!node.left) {
+        break
+      }
+      if (node.value < node.left.value) {
+        node = node.left
+      }
+    }
+    return node
+  }
 }

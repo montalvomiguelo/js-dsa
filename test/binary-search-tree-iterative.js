@@ -32,3 +32,39 @@ test('contains', (t) => {
   t.true(bst.contains(14))
   t.false(bst.contains(7))
 })
+
+test('remove a leaf node', (t) => {
+  const bst = new BST(8)
+  bst.insert(3)
+  bst.insert(1)
+  bst.insert(4)
+  bst.insert(10)
+  bst.insert(14)
+  t.like(bst.remove(14), {
+    value: 8,
+    left: {
+      value: 3,
+      left: { value: 1, left: null, right: null },
+      right: { value: 4, left: null, right: null },
+    },
+    right: { value: 10, left: null, right: null },
+  })
+})
+
+test('remove a node with 1 children', (t) => {
+  const bst = new BST(8)
+  bst.insert(3)
+  bst.insert(1)
+  bst.insert(4)
+  bst.insert(10)
+  bst.insert(14)
+  t.like(bst.remove(10), {
+    value: 8,
+    left: {
+      value: 3,
+      left: { value: 1, left: null, right: null },
+      right: { value: 4, left: null, right: null },
+    },
+    right: { value: 14, left: null, right: null },
+  })
+})
