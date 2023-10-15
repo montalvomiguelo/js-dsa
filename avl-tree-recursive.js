@@ -1,5 +1,4 @@
 import BinarySearchTree from './binary-search-tree.js'
-import { TreeNode as Node } from './node.js'
 
 /**
  * @template {number} T
@@ -7,7 +6,7 @@ import { TreeNode as Node } from './node.js'
  */
 export default class AVLTree extends BinarySearchTree {
   /**
-   * @param {Node<T> | null} node
+   * @param {import('./node').TreeNode<T> | null} node
    * @description
    * Average: O(log n) time | O(log n) space
    * Worst: O(n) time | O(n) space
