@@ -134,7 +134,7 @@ export default class BST {
    * Worst: O(n) time | O(n) space
    */
   inOrder(callback, node = this) {
-    if (!node) {
+    if (!callback) {
       return
     }
     /** @type {BST[]} */
@@ -149,6 +149,35 @@ export default class BST {
         current = stack.pop()
         if (current) {
           callback(current)
+          current = current.right
+        }
+      }
+    }
+  }
+
+  /**
+   * @param {(node: BST) => void} callback
+   * @param {BST | null} node
+   * @description
+   * Average: O(n) time | O(h) space
+   * Worst: O(n) time | O(n) space
+   */
+  preOrder(callback, node = this) {
+    if (!callback) {
+      return
+    }
+    /** @type {BST[]} */
+    const stack = []
+    /** @type {BST | null | undefined} */
+    let current = node
+    while (stack.length || current) {
+      if (current) {
+        stack.push(current)
+        callback(current)
+        current = current.left
+      } else {
+        current = stack.pop()
+        if (current) {
           current = current.right
         }
       }
