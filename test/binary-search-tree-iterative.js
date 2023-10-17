@@ -94,3 +94,16 @@ test('pre-order traversal', (t) => {
   bst.preOrder((node) => result.push(node.value))
   t.like(result, [3, 2, 6, 5, 4, 7])
 })
+
+test('post-order traversal', (t) => {
+  /** @type {number[]} */
+  const result = []
+  const bst = new BST(3)
+  bst.insert(2)
+  bst.insert(6)
+  bst.insert(5)
+  bst.insert(4)
+  bst.insert(7)
+  bst.postOrder((node) => result.push(node.value))
+  t.like(result, [2, 4, 5, 7, 6, 3])
+})

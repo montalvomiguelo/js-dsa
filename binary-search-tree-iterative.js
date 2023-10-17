@@ -183,4 +183,39 @@ export default class BST {
       }
     }
   }
+
+  /**
+   * @param {(node: BST) => void} callback
+   * @param {BST | null} node
+   * @description
+   * Average: O(n) time | O(h) space
+   * Worst: O(n) time | O(n) space
+   */
+  postOrder(callback, node = this) {
+    /** @type {BST | null | undefined} */
+    let current = node
+    const stack = []
+    const stackRight = []
+    while (current || stack.length) {
+      if (current) {
+        if (current.right) {
+          stackRight.push(current.right)
+        }
+        stack.push(current)
+        current = current.left
+      } else {
+        current = stack[stack.length - 1]
+        if (
+          stackRight.length &&
+          current.right === stackRight[stackRight.length - 1]
+        ) {
+          current = stackRight.pop()
+        } else {
+          callback(current)
+          stack.pop()
+          current = null
+        }
+      }
+    }
+  }
 }
