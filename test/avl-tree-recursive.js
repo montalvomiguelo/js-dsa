@@ -11,3 +11,14 @@ test('maximum depth', (t) => {
   bst.insert(7)
   t.is(bst.getNodeHeight(bst.root), 3)
 })
+
+test('balance factor', (t) => {
+  const bst = new AVLTree()
+  bst.insert(3)
+  bst.insert(2)
+  bst.insert(6)
+  bst.insert(5)
+  bst.insert(4)
+  bst.insert(7)
+  t.is(bst.getBalance(bst.root), -2)
+})

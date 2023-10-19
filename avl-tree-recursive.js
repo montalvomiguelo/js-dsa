@@ -27,4 +27,17 @@ export default class AVLTree extends BinarySearchTree {
     }
     return Math.max(leftCount, rightCount)
   }
+
+  /**
+   * @param {import('./node').TreeNode<T> | null} node
+   * @description
+   * Average: O(log n) time | O(log n) space
+   * Worst: O(n) time | O(n) space
+   */
+  getBalance(node) {
+    if (!node) {
+      return
+    }
+    return this.getNodeHeight(node.left) - this.getNodeHeight(node.right)
+  }
 }
