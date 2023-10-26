@@ -20,5 +20,5 @@ test('balance factor', (t) => {
   bst.insert(5)
   bst.insert(4)
   bst.insert(7)
-  t.is(bst.getBalance(bst.root), -2)
+  t.is(bst.getBalanceFactor(bst.root), -2)
 })

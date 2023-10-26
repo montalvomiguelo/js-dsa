@@ -13,19 +13,13 @@ export default class AVLTree extends BinarySearchTree {
    */
   getNodeHeight(node) {
     if (!node) {
-      return 0
+      return -1
     }
-    let leftCount = 0
-    let rightCount = 0
-    if (node.left) {
-      leftCount++
-      leftCount += this.getNodeHeight(node.left)
-    }
-    if (node.right) {
-      rightCount++
-      rightCount += this.getNodeHeight(node.right)
-    }
-    return Math.max(leftCount, rightCount)
+    /** @type {number} */
+    const leftCount = this.getNodeHeight(node.left)
+    /** @type {number} */
+    const rightCount = this.getNodeHeight(node.right)
+    return Math.max(leftCount, rightCount) + 1
   }
 
   /**
