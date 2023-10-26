@@ -1,0 +1,15 @@
+{
+  "configurations": {
+    "js-dsa": {
+      "adapter": "js-debug",
+      "filetypes": ["javascript", "typescript"],
+      "configuration": {
+        "request": "launch",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "program": "${file}",
+        "cwd": "${workspaceRoot}"
+      }
+    }
+  }
+}
