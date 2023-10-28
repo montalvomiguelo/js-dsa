@@ -103,4 +103,26 @@ export default class AVLTree extends BinarySearchTree {
     }
     return temp
   }
+
+  /**
+   * @param {Node<T> | null} node
+   * @param {T} key
+   * @description
+   * Time complexity O(log n) where n is the number of nodes in the tree
+   * Space complexity O(h)
+   */
+  removeNode(node, key) {
+    node = super.removeNode(node, key)
+    const balanceFactor = this.getBalanceFactor(node)
+    if (balanceFactor > 1) {
+      if (node?.left && this.compareFn(key, node.left.key) === 1) {
+        node = this.rotateRight(node)
+      }
+    } else if (balanceFactor < -1) {
+      if (node?.right && this.compareFn(key, node.right.key) === -1) {
+        node = this.rotateLeft(node)
+      }
+    }
+    return node
+  }
 }
