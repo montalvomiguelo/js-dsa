@@ -5,7 +5,7 @@ import { TreeNode as Node } from './node.js'
  * @template {number} T
  */
 export default class BinarySearchTree {
-  /** @type Node<T> | null */
+  /** @type {Node<T> | null} */
   root
 
   constructor(compareFn = defaultCompareFn) {
@@ -56,7 +56,7 @@ export default class BinarySearchTree {
 
   /**
    * @param {Node<T>|null} node
-   * @param {(node: Node<T>) => void} callback}
+   * @param {(node: Node<T>) => void} callback
    * @description
    * Timecomplexity O(n) where n is the number of nodes
    * Spacecomplexity O(h) where h is the height of the tree

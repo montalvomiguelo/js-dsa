@@ -9,7 +9,7 @@ export default class HashTableSeparateChaining {
   /** @protected */
   toStrFn
   /**
-   * @type Object.<number, LinkedList<ValuePair<T, U>>|undefined>
+   * @type {Object.<number, LinkedList<ValuePair<T, U>>|undefined>}
    * @protected
    */
   table

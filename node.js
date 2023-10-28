@@ -21,9 +21,9 @@ export class Node {
  */
 export class TreeNode {
   key
-  /** @type TreeNode<T> | null */
+  /** @type {TreeNode<T> | null} */
   left
-  /** @type TreeNode<T> | null */
+  /** @type {TreeNode<T> | null} */
   right
 
   /**

@@ -8,7 +8,7 @@ export default class HashTable {
   /** @protected */
   toStrFn
   /**
-   * @type Object.<number, ValuePair<T, U>>
+   * @type {Object.<number, ValuePair<T, U>>}
    * @protected
    */
   table
