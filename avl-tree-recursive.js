@@ -115,11 +115,17 @@ export default class AVLTree extends BinarySearchTree {
     node = super.removeNode(node, key)
     const balanceFactor = this.getBalanceFactor(node)
     if (balanceFactor > 1) {
-      if (node?.left && this.compareFn(key, node.left.key) === 1) {
+      if (node?.left && this.getBalanceFactor(node.left) >= 0) {
+        node = this.rotateRight(node)
+      } else if (node?.left) {
+        node.left = this.rotateLeft(node.left)
         node = this.rotateRight(node)
       }
     } else if (balanceFactor < -1) {
-      if (node?.right && this.compareFn(key, node.right.key) === -1) {
+      if (node?.right && this.getBalanceFactor(node.right) <= 0) {
+        node = this.rotateLeft(node)
+      } else if (node?.right) {
+        node.right = this.rotateRight(node.right)
         node = this.rotateLeft(node)
       }
     }
