@@ -101,10 +101,8 @@ export default class BST {
         // remove a node with 2 children
         if (node.right) {
           const min = node.right.min()
-          if (min) {
-            node.value = min.value
-            node.right.remove(node.value, node)
-          }
+          node.value = min.value
+          node.right.remove(min.value, node.right, node)
         }
       }
     }
@@ -112,16 +110,14 @@ export default class BST {
   }
 
   /**
-   * @param {BST | null} node
+   * @param {BST} node
+   * @description
+   * Average: O(log(n)) time | O(1) space
+   * Worst: O(n) time | O(1) space
    */
   min(node = this) {
-    while (node) {
-      if (!node.left) {
-        break
-      }
-      if (node.value < node.left.value) {
-        node = node.left
-      }
+    while (node.left) {
+      node = node.left
     }
     return node
   }

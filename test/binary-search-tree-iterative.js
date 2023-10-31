@@ -69,6 +69,31 @@ test('remove a node with 1 children', (t) => {
   })
 })
 
+test('remove a node with 2 children', (t) => {
+  const bst = new BST(8)
+  bst.insert(3)
+  bst.insert(1)
+  bst.insert(4)
+  t.like(bst.remove(3), {
+    value: 8,
+    left: {
+      value: 4,
+      left: { value: 1, left: null, right: null },
+      right: null,
+    },
+  })
+})
+
+test('min', (t) => {
+  const bst = new BST(8)
+  bst.insert(3)
+  bst.insert(1)
+  bst.insert(4)
+  bst.insert(10)
+  bst.insert(14)
+  t.like(bst.min(), { value: 1, left: null, right: null })
+})
+
 test('in-order traversal', (t) => {
   /** @type {number[]} */
   const result = []
