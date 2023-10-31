@@ -44,7 +44,7 @@ export default class AVLTree extends BinarySearchTree {
   }
 
   /**
-   * @param {import('./node').TreeNode<T> | null} node
+   * @param {Node<T> | null} node
    * @param {T} key
    */
   insertNode(node, key) {
