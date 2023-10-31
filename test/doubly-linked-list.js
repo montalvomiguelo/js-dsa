@@ -1,11 +1,13 @@
 import test from 'ava'
 import DoublyLinkedList from '../doubly-linked-list.js'
 
+/** @typedef {import('../doubly-node').DoublyNode<number>} DoublyNode */
+
 test('inserts an element at any position of the list', (t) => {
   const list = new DoublyLinkedList()
-  /** @type {import('../doubly-node').DoublyNode<number> | null} */
+  /** @type {DoublyNode | null} */
   let head
-  /** @type {import('../doubly-node').DoublyNode<number> | null} */
+  /** @type {DoublyNode | null} */
   let tail
 
   t.is(list.insert(1, 0), true)
