@@ -35,3 +35,35 @@ export class TreeNode {
     this.right = null
   }
 }
+
+/** @enum {number} */
+export const Colors = {
+  RED: 0,
+  BLACK: 1,
+}
+
+/**
+ * @template T
+ * @extends {TreeNode<T>}
+ */
+export class RedBlackNode extends TreeNode {
+  /** @type {RedBlackNode<T> | null} */
+  left
+  /** @type {RedBlackNode<T> | null} */
+  right
+  /** @type {Colors} */
+  color
+  /** @type {RedBlackNode<T> | null} */
+  parent
+
+  /**
+   * @param {T} key
+   */
+  constructor(key) {
+    super(key)
+    this.left = null
+    this.right = null
+    this.color = Colors.RED
+    this.parent = null
+  }
+}
