@@ -25,7 +25,7 @@ export default class RedBlackTree extends BinarySearchTree {
       this.root.color = Colors.BLACK
     } else {
       const newNode = this.insertNode(this.root, key)
-      // TODO: fix tree properties
+      this.fixTreeProperties(newNode)
     }
   }
 
@@ -49,5 +49,47 @@ export default class RedBlackTree extends BinarySearchTree {
       return node.right
     }
     return this.insertNode(node.right, key)
+  }
+
+  /**
+   * @param {RedBlackNode<T>} node
+   */
+  fixTreeProperties(node) {
+    while (node?.parent?.isRed() && node.color !== Colors.BLACK) {
+      let parent = node.parent
+      const grandParent = parent.parent
+      // case A: parent is left child
+      if (grandParent?.left === parent) {
+        const uncle = grandParent.right
+
+        // case 1A: uncle of node is also red - only recoloring
+        if (uncle?.color === Colors.RED) {
+          grandParent.color = Colors.RED
+          parent.color = Colors.BLACK
+          uncle.color = Colors.BLACK
+          node = grandParent
+        } else {
+          // TODO: case 2A: node is right child - left rotate
+          // TODO: case 3A: node is left child - right rotate
+        }
+        // case B: parent is right child
+      } else if (grandParent) {
+        const uncle = grandParent.left
+
+        // case 1B: uncle is red - only recoloring
+        if (uncle?.color === Colors.RED) {
+          grandParent.color = Colors.RED
+          parent.color = Colors.BLACK
+          uncle.color = Colors.BLACK
+          node = grandParent
+        } else {
+          // TODO: case 2B: node is left child - right rotate
+          // TODO: case 3B: node is right child - left rotate
+        }
+      }
+    }
+    if (this.root) {
+      this.root.color = Colors.BLACK
+    }
   }
 }

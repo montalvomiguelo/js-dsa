@@ -66,4 +66,8 @@ export class RedBlackNode extends TreeNode {
     this.color = Colors.RED
     this.parent = null
   }
+
+  isRed() {
+    return this.color === Colors.RED
+  }
 }
