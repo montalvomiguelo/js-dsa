@@ -69,8 +69,15 @@ export default class RedBlackTree extends BinarySearchTree {
           uncle.color = Colors.BLACK
           node = grandParent
         } else {
-          // TODO: case 2A: node is right child - left rotate
-          // TODO: case 3A: node is left child - right rotate
+          // case 2A: node is right child - left rotate
+          if (node === parent.right) {
+            node = parent
+            this.leftRotate(node)
+          }
+          // case 3A: node is left child - right rotate
+          parent.color = Colors.BLACK
+          grandParent.color = Colors.RED
+          this.rightRotate(grandParent)
         }
         // case B: parent is right child
       } else if (grandParent) {
@@ -83,13 +90,61 @@ export default class RedBlackTree extends BinarySearchTree {
           uncle.color = Colors.BLACK
           node = grandParent
         } else {
-          // TODO: case 2B: node is left child - right rotate
-          // TODO: case 3B: node is right child - left rotate
+          // case 2B: node is left child - right rotate
+          if (node === parent.left) {
+            node = parent
+            this.rightRotate(node)
+          }
+          // case 3B: node is right child - left rotate
+          parent.color = Colors.BLACK
+          grandParent.color = Colors.RED
+          this.leftRotate(grandParent)
         }
       }
     }
-    if (this.root) {
-      this.root.color = Colors.BLACK
+    /** @type {RedBlackNode<T>} */ (this.root).color = Colors.BLACK
+  }
+
+  /**
+   * @param {RedBlackNode<T>} node
+   */
+  leftRotate(node) {
+    const tmp = /** @type {RedBlackNode<T>} */ (node.right)
+    node.right = tmp.left
+    if (tmp.left) {
+      tmp.left.parent = node
     }
+    tmp.parent = node.parent
+    if (node.parent === null) {
+      this.root = tmp
+    } else if (node === node.parent.left) {
+      node.parent.left = tmp
+    } else {
+      node.parent.right = tmp
+    }
+
+    tmp.left = node
+    node.parent = tmp
+  }
+
+  /**
+   * @param {RedBlackNode<T>} node
+   */
+  rightRotate(node) {
+    const tmp = /** @type {RedBlackNode<T>} */ (node.left)
+    node.left = tmp.right
+    if (tmp.right) {
+      tmp.right.parent = node
+    }
+    tmp.parent = node.parent
+    if (node.parent === null) {
+      this.root = tmp
+    } else if (node === node.parent.right) {
+      node.parent.right = tmp
+    } else {
+      node.parent.left = tmp
+    }
+    tmp.right = node
+    node.parent = tmp
   }
 }
