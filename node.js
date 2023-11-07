@@ -38,8 +38,8 @@ export class TreeNode {
 
 /** @enum {number} */
 export const Colors = {
-  RED: 0,
-  BLACK: 1,
+  RED: 1,
+  BLACK: 0,
 }
 
 /**
