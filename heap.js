@@ -43,6 +43,8 @@ export default class MinHeap {
 
   /**
    * @param {number} index
+   * @description
+   * O(log n) time | O(1) space - where n is the length of the heap
    */
   siftUp(index) {
     let parent = this.getParentIndex(index)
@@ -51,5 +53,9 @@ export default class MinHeap {
       index = parent
       parent = this.getParentIndex(index)
     }
+  }
+
+  getMin() {
+    return this.heap[0]
   }
 }
