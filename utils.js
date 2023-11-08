@@ -28,3 +28,14 @@ export function defaultCompareFn(a, b) {
 
   return 1
 }
+
+/**
+ * @param {number[]} array
+ * @param {number} i
+ * @param {number} j
+ */
+export function swap(array, i, j) {
+  const temp = array[i]
+  array[i] = array[j]
+  array[j] = temp
+}
