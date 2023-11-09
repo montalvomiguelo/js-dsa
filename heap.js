@@ -58,4 +58,41 @@ export default class MinHeap {
   getMin() {
     return this.heap[0]
   }
+
+  extract() {
+    if (this.heap.length === 0) {
+      return
+    }
+
+    if (this.heap.length === 1) {
+      return this.heap.shift()
+    }
+
+    const root = this.heap[0]
+    this.heap[0] = this.heap[this.heap.length - 1]
+    this.heap.pop()
+    this.siftDown(0)
+    return root
+  }
+
+  /**
+   * @param {number} index
+   */
+  siftDown(index) {
+    const left = this.getLeftIndes(index)
+    const right = this.getRightIndex(index)
+    let smallest = index
+    const size = this.heap.length
+
+    if (left < size && this.heap[left] < this.heap[smallest]) {
+      smallest = left
+    }
+    if (right < size && this.heap[right] < this.heap[smallest]) {
+      smallest = right
+    }
+    if (smallest !== index) {
+      swap(this.heap, smallest, index)
+      this.siftDown(smallest)
+    }
+  }
 }

@@ -14,3 +14,4 @@
 - [avl-tree-deletion](https://shop.montalvomiguelo.com/cdn/shop/files/avl-tree-deletion.png?v=15032429651689051374)
 - [red-black-tree](https://shop.montalvomiguelo.com/cdn/shop/files/red-black-tree.png?v=629540517308669720)
 - [min-heap-insert](https://shop.montalvomiguelo.com/cdn/shop/files/min-heap-insert.png?v=6972308941056342366)
+- [min-heap-extract](https://shop.montalvomiguelo.com/cdn/shop/files/min-heap-extract.png?v=18303536269632182979)
