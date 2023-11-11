@@ -11,7 +11,7 @@ export default class MinHeap {
   /**
    * @param {number} index
    */
-  getLeftIndes(index) {
+  getLeftIndex(index) {
     return 2 * index + 1
   }
 
@@ -81,7 +81,7 @@ export default class MinHeap {
    * O(log n) time | O(log n) space - where n is the length of the heap
    */
   siftDown(index) {
-    const left = this.getLeftIndes(index)
+    const left = this.getLeftIndex(index)
     const right = this.getRightIndex(index)
     let smallest = index
     const size = this.heap.length

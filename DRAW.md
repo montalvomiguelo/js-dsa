@@ -15,3 +15,4 @@
 - [red-black-tree](https://shop.montalvomiguelo.com/cdn/shop/files/red-black-tree.png?v=629540517308669720)
 - [min-heap-insert](https://shop.montalvomiguelo.com/cdn/shop/files/min-heap-insert.png?v=6972308941056342366)
 - [min-heap-extract](https://shop.montalvomiguelo.com/cdn/shop/files/min-heap-extract.png?v=18303536269632182979)
+- [max-heap-extract](https://shop.montalvomiguelo.com/cdn/shop/files/max-heap-extract.png?v=17728419471045597836)

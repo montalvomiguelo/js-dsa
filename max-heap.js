@@ -22,7 +22,7 @@ export default class MaxHeap extends MinHeap {
    */
   siftDown(index) {
     let greatest = index
-    const left = this.getLeftIndes(index)
+    const left = this.getLeftIndex(index)
     const right = this.getRightIndex(index)
     const size = this.heap.length
 
