@@ -3,7 +3,7 @@ import { swap } from './utils.js'
 /**
  * @param {number[]} array
  * @description
- * O(n log n) time | O(log n) space - where n is the length of the heap
+ * O(n log n) time | O(1) space - where n is the length of the heap
  */
 export default function heapSort(array) {
   const heapSize = array.length
@@ -28,6 +28,21 @@ export default function heapSort(array) {
  * @param {number} index
  */
 function heapify(array, heapSize, index) {
+  let largest = getLargest(array, heapSize, index)
+
+  while (largest !== index) {
+    swap(array, largest, index)
+    index = largest
+    largest = getLargest(array, heapSize, index)
+  }
+}
+
+/**
+ * @param {number[]} array
+ * @param {number} heapSize
+ * @param {number} index
+ */
+function getLargest(array, heapSize, index) {
   let largest = index
   const left = 2 * index + 1
   const right = 2 * index + 2
@@ -38,8 +53,5 @@ function heapify(array, heapSize, index) {
   if (right < heapSize && array[right] > array[largest]) {
     largest = right
   }
-  if (largest !== index) {
-    swap(array, largest, index)
-    heapify(array, heapSize, largest)
-  }
+  return largest
 }
