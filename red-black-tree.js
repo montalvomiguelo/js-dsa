@@ -33,6 +33,9 @@ export default class RedBlackTree extends BinarySearchTree {
    * @param {RedBlackNode<T>} node
    * @param {T} key
    * @return {RedBlackNode<T>}
+   * @description
+   * Average O(log n) time | O(log n) space - where n is the number of nodes in the tree
+   * Worst O(n) time | O(n) space
    */
   insertNode(node, key) {
     if (this.compareFn(key, node.key) === -1) {
