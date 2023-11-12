@@ -26,32 +26,38 @@ export default class RedBlackTree extends BinarySearchTree {
       return
     }
     const newNode = this.insertNode(this.root, key)
-    this.fixTreeProperties(newNode)
+    if (newNode) this.fixTreeProperties(newNode)
   }
 
   /**
    * @param {RedBlackNode<T>} node
    * @param {T} key
-   * @return {RedBlackNode<T>}
    * @description
-   * Average O(log n) time | O(log n) space - where n is the number of nodes in the tree
-   * Worst O(n) time | O(n) space
+   * Average O(log n) time | O(1) space
+   * Worst O(n) time | O(1) space
    */
   insertNode(node, key) {
-    if (this.compareFn(key, node.key) === -1) {
-      if (node.left === null) {
-        node.left = new RedBlackNode(key)
-        node.left.parent = node
-        return node.left
+    /** @type {RedBlackNode<T> | null} */
+    let current = node
+    /** @type {RedBlackNode<T> | null} */
+    let parent = null
+    while (current) {
+      parent = current
+      if (this.compareFn(key, current.key) === -1) {
+        current = current.left
+      } else {
+        current = current.right
       }
-      return this.insertNode(node.left, key)
     }
-    if (node.right === null) {
-      node.right = new RedBlackNode(key)
-      node.right.parent = node
-      return node.right
+    const newNode = new RedBlackNode(key)
+    if (!parent) return
+    newNode.parent = parent
+    if (this.compareFn(key, parent.key) === -1) {
+      parent.left = newNode
+    } else {
+      parent.right = newNode
     }
-    return this.insertNode(node.right, key)
+    return newNode
   }
 
   /**
