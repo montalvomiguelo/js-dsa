@@ -1,6 +1,6 @@
 import Dictionary from './dictionary.js'
 
-export default class Graph {
+export class Graph {
   /** @private */
   isDirected
   /**
