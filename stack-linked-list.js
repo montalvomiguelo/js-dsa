@@ -1,7 +1,7 @@
 import DoublyLinkedList from './doubly-linked-list.js'
 
 export default class StackLinkedList {
-  /* import('./doubly-node.js').DoublyNode */
+  /* import('./doubly-node').DoublyNode */
   items
 
   constructor() {
