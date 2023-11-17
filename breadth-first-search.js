@@ -11,11 +11,11 @@ export default function breadthFirstSearch(graph, callback) {
   queue.push(vertices[0])
 
   while (queue.length) {
-    const vertice = queue.shift()
-    if (vertice && !seen.has(vertice)) {
-      callback(vertice)
-      const neighbors = graph.getAdjList().get(vertice)
-      seen.add(vertice)
+    const vertex = queue.shift()
+    if (vertex && !seen.has(vertex)) {
+      callback(vertex)
+      const neighbors = graph.getAdjList().get(vertex)
+      seen.add(vertex)
       if (neighbors) {
         queue.push(...neighbors)
       }

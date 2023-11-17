@@ -58,9 +58,9 @@ export class Graph {
   toString() {
     let s = ''
     for (let i = 0; i < this.vertices.length; i++) {
-      const vertice = this.vertices[i]
-      const neighbors = this.adjList.get(vertice)
-      s += `${vertice} ->`
+      const vertex = this.vertices[i]
+      const neighbors = this.adjList.get(vertex)
+      s += `${vertex} ->`
       if (!neighbors) continue
       for (let j = 0; j < neighbors.length; j++) {
         const neighbor = neighbors[j]
