@@ -17,3 +17,4 @@
 - [min-heap-extract](https://shop.montalvomiguelo.com/cdn/shop/files/min-heap-extract.png?v=18303536269632182979)
 - [max-heap-extract](https://shop.montalvomiguelo.com/cdn/shop/files/max-heap-extract.png?v=17728419471045597836)
 - [bfs-colors](https://shop.montalvomiguelo.com/cdn/shop/files/bfs-colors.png?v=16057023623314726686)
+- [bfs-shortest-paths](https://shop.montalvomiguelo.com/cdn/shop/files/bfs-shortest-paths.png?v=11935111234336597305)

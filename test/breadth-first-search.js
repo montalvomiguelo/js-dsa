@@ -21,7 +21,7 @@ test('works as expected', (t) => {
   graph.addEdge('B', 'F')
   graph.addEdge('E', 'I')
 
-  const shortestPath = breadthFirstSearch(
+  const shortestPathA = breadthFirstSearch(
     graph,
     (v) => res.push(v),
     vertices[0]
@@ -29,7 +29,7 @@ test('works as expected', (t) => {
 
   t.deepEqual(res, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])
 
-  t.deepEqual(shortestPath, {
+  t.deepEqual(shortestPathA, {
     distances: {
       A: 0,
       B: 1,
@@ -53,4 +53,34 @@ test('works as expected', (t) => {
       I: 'E',
     },
   })
+
+  const paths = []
+  const vertexA = vertices[0]
+
+  for (let i = 1; i < vertices.length; i++) {
+    const vertex = vertices[i]
+    let adjVertex = shortestPathA.predecessors[vertex]
+    const stack = [vertex]
+    const path = []
+    while (adjVertex !== vertexA) {
+      stack.push(adjVertex)
+      adjVertex = shortestPathA.predecessors[adjVertex]
+    }
+    stack.push(vertexA)
+    while (stack.length) {
+      path.push(stack.pop())
+    }
+    paths.push(path.join(' - '))
+  }
+
+  t.deepEqual(paths, [
+    'A - B',
+    'A - C',
+    'A - D',
+    'A - B - E',
+    'A - B - F',
+    'A - C - G',
+    'A - D - H',
+    'A - B - E - I',
+  ])
 })
