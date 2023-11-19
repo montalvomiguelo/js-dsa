@@ -21,7 +21,36 @@ test('works as expected', (t) => {
   graph.addEdge('B', 'F')
   graph.addEdge('E', 'I')
 
-  breadthFirstSearch(graph, (v) => res.push(v))
+  const shortestPath = breadthFirstSearch(
+    graph,
+    (v) => res.push(v),
+    vertices[0]
+  )
 
   t.deepEqual(res, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])
+
+  t.deepEqual(shortestPath, {
+    distances: {
+      A: 0,
+      B: 1,
+      C: 1,
+      D: 1,
+      E: 2,
+      F: 2,
+      G: 2,
+      H: 2,
+      I: 3,
+    },
+    predecessors: {
+      A: null,
+      B: 'A',
+      C: 'A',
+      D: 'A',
+      E: 'B',
+      F: 'B',
+      G: 'C',
+      H: 'D',
+      I: 'E',
+    },
+  })
 })
