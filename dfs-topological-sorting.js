@@ -2,30 +2,33 @@
 
 /**
  * @param {import('./graph').Graph} graph
- * @param {(v: string | number) => void} callback
+ * @param {(v: string | number) => void} [callback]
  */
 export default function dfs(graph, callback) {
   const vertices = graph.getVertices()
   const adjList = graph.getAdjList()
   const seen = new Set()
   const time = { count: 0 }
-  const vertex = vertices[0]
-  /** @type {Object.<string, string|null>} */
-  const predecessors = { [vertex]: null }
+  /** @type {Object.<string, string>} */
+  const predecessors = {}
   /** @type {Object.<string|number, number|string>} */
   const finishTime = {}
   /** @type {Object.<string|number, number|string>} */
   const discoveryTime = {}
-  helper(
-    vertex,
-    adjList,
-    seen,
-    predecessors,
-    finishTime,
-    discoveryTime,
-    time,
-    callback
-  )
+  for (let i = 0; i < vertices.length; i++) {
+    const vertex = vertices[i]
+    if (seen.has(vertex)) continue
+    helper(
+      vertex,
+      adjList,
+      seen,
+      predecessors,
+      finishTime,
+      discoveryTime,
+      time,
+      callback
+    )
+  }
   return { predecessors, finishTime, discoveryTime }
 }
 
@@ -33,7 +36,7 @@ export default function dfs(graph, callback) {
  * @param {number | string} vertex
  * @param {Dictionary} adjList
  * @param {Set<string|number>} seen
- * @param {Object.<string|number, string|number|null>} predecessors
+ * @param {Object.<string|number, string|number>} predecessors
  * @param {Object.<string|number, number|string>} finishTime
  * @param {Object.<string, number>} discoveryTime
  * @param {{count: number}} time

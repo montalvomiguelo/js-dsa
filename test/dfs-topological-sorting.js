@@ -29,7 +29,6 @@ test('returns the expected results', (t) => {
 
   t.deepEqual(results, {
     predecessors: {
-      A: null,
       B: 'A',
       E: 'B',
       I: 'E',
@@ -42,4 +41,52 @@ test('returns the expected results', (t) => {
     finishTime: { I: 5, E: 6, F: 8, B: 9, G: 13, H: 15, D: 16, C: 17, A: 18 },
     discoveryTime: { A: 1, B: 2, E: 3, I: 4, F: 7, C: 10, D: 11, G: 12, H: 14 },
   })
+})
+
+test('decreasing order of finishing time', (t) => {
+  const graph = new Graph(true)
+  const vertices = ['A', 'B', 'C', 'D', 'E', 'F']
+
+  for (let i = 0; i < vertices.length; i++) {
+    graph.addVertex(vertices[i])
+  }
+
+  graph.addEdge('A', 'C')
+  graph.addEdge('A', 'D')
+  graph.addEdge('B', 'D')
+  graph.addEdge('B', 'E')
+  graph.addEdge('C', 'F')
+  graph.addEdge('F', 'E')
+
+  const results = dfs(graph)
+
+  t.deepEqual(results, {
+    predecessors: {
+      C: 'A',
+      F: 'C',
+      E: 'F',
+      D: 'A',
+    },
+    finishTime: { A: 10, C: 7, F: 6, E: 5, D: 9, B: 12 },
+    discoveryTime: { A: 1, C: 2, F: 3, E: 4, D: 8, B: 11 },
+  })
+
+  const list = []
+
+  for (let i = 0; i < vertices.length; i++) {
+    let max = 0
+    let maxIdx = -1
+    for (let j = 0; j < vertices.length; j++) {
+      const time = results.finishTime[vertices[j]]
+      if (!time) continue
+      if (time > max) {
+        max = time
+        maxIdx = j
+      }
+    }
+    list.push(vertices[maxIdx])
+    delete results.finishTime[vertices[maxIdx]]
+  }
+
+  t.deepEqual(list, ['B', 'A', 'D', 'C', 'F', 'E'])
 })
