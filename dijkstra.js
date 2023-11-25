@@ -1,5 +1,3 @@
-const INF = Number.MAX_SAFE_INTEGER
-
 /**
  * @param {Array<Array<number>>} graph
  * @param {number} src
@@ -8,48 +6,49 @@ const INF = Number.MAX_SAFE_INTEGER
  */
 export default function dijkstra(graph, src) {
   /** @type {Array<number>} */
-  const dist = []
+  const distances = []
   /** @type {Array<boolean>} */
   const visited = []
 
   for (let i = 0; i < graph.length; i++) {
-    dist[i] = INF
+    distances[i] = Infinity
     visited[i] = false
   }
 
-  dist[src] = 0
+  distances[src] = 0
 
   for (let i = 0; i < graph.length; i++) {
-    const u = minDistance(dist, visited)
+    const u = minDistance(distances, visited)
     visited[u] = true
     for (let v = 0; v < graph.length; v++) {
       if (
         !visited[v] &&
         graph[u][v] !== 0 &&
-        dist[u] !== INF &&
-        dist[u] + graph[u][v] < dist[v]
+        distances[u] !== Infinity &&
+        distances[u] + graph[u][v] < distances[v]
       ) {
-        dist[v] = dist[u] + graph[u][v]
+        distances[v] = distances[u] + graph[u][v]
       }
     }
   }
 
-  return dist
+  return distances
 }
 
 /**
- * @param {Array<number>} dist
+ * @param {Array<number>} distances
  * @param {Array<boolean>} visited
  */
-function minDistance(dist, visited) {
-  let min = INF
+function minDistance(distances, visited) {
+  let min = Infinity
   let minIndex = -1
 
-  for (let v = 0; v < dist.length; v++) {
-    if (!visited[v] && dist[v] <= min) {
-      min = dist[v]
+  for (let v = 0; v < distances.length; v++) {
+    if (!visited[v] && distances[v] <= min) {
+      min = distances[v]
       minIndex = v
     }
   }
+
   return minIndex
 }
