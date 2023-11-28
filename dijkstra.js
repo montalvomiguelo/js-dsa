@@ -6,13 +6,9 @@
  */
 export default function dijkstra(graph, src) {
   /** @type {Array<number>} */
-  const distances = []
+  const distances = new Array(graph.length).fill(Infinity)
   /** @type {Set<number>} */
   const visited = new Set()
-
-  for (let i = 0; i < graph.length; i++) {
-    distances[i] = Infinity
-  }
 
   distances[src] = 0
 
