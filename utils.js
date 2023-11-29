@@ -30,7 +30,8 @@ export function defaultCompareFn(a, b) {
 }
 
 /**
- * @param {number[]} array
+ * @template T
+ * @param {T[]} array
  * @param {number} i
  * @param {number} j
  */
