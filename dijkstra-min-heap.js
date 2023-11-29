@@ -9,22 +9,16 @@ import { swap } from './utils.js'
 export default function dijkstra(graph, src) {
   /** @type {Array<number>} */
   const distances = new Array(graph.length).fill(Infinity)
-  /** @type {Set<number>} */
-  const visited = new Set()
 
   distances[src] = 0
 
   const minHeap = new MinHeap()
   minHeap.insert(src, 0)
 
-  while (visited.size < graph.length) {
+  while (!minHeap.isEmpty()) {
     const { v: u } = minHeap.extract()
 
-    visited.add(u)
-
     for (let v = 0; v < graph.length; v++) {
-      if (visited.has(v)) continue
-
       if (graph[u][v] !== 0 && distances[u] + graph[u][v] < distances[v]) {
         distances[v] = distances[u] + graph[u][v]
         minHeap.insert(v, distances[v])
@@ -36,11 +30,18 @@ export default function dijkstra(graph, src) {
 }
 
 class MinHeap {
-  /** @type {{v: number, dist: number}[]} */
+  /**
+   * @private
+   * @type {{v: number, dist: number}[]}
+   */
   heap
 
   constructor() {
     this.heap = []
+  }
+
+  isEmpty() {
+    return this.heap.length === 0
   }
 
   /**
