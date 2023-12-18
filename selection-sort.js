@@ -9,7 +9,7 @@ export default function selectionSort(array) {
   let indexMin
   for (let i = 0; i < array.length - 1; i++) {
     indexMin = i
-    for (let j = i; j < array.length; j++) {
+    for (let j = i + 1; j < array.length; j++) {
       if (array[indexMin] > array[j]) {
         indexMin = j
       }
