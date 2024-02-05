@@ -4,22 +4,22 @@
  * @spacecomplexity O(1)
  */
 export default function hasSingleCycle(array) {
-  const length = array.length
-  const startIndex = 0
-  let count = 0
-  let index = 0
+  const length = array.length;
+  const startIndex = 0;
+  let count = 0;
+  let index = 0;
 
   while (count < length) {
     if (count > 0 && index === 0) {
-      return false
+      return false;
     }
-    const jumps = array[index]
-    index = (index + jumps) % length
+    const jumps = array[index];
+    index = (index + jumps) % length;
     if (index < 0) {
-      index = length + index
+      index = length + index;
     }
-    count++
+    count++;
   }
 
-  return index === startIndex
+  return index === startIndex;
 }

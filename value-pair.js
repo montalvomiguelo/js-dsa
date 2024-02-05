@@ -7,11 +7,11 @@ export default class ValuePair {
    * @param {U} value
    */
   constructor(key, value) {
-    this.key = key
-    this.value = value
+    this.key = key;
+    this.value = value;
   }
 
   toString() {
-    return `[${this.key}: ${this.value}]`
+    return `[${this.key}: ${this.value}]`;
   }
 }

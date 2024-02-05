@@ -1,21 +1,21 @@
-import { defaultToString } from './utils.js'
-import ValuePair from './value-pair.js'
+import { defaultToString } from './utils.js';
+import ValuePair from './value-pair.js';
 
 /**
  * @template T,U
  */
 export default class HashTable {
   /** @protected */
-  toStrFn
+  toStrFn;
   /**
    * @type {Object.<number, ValuePair<T, U>>}
    * @protected
    */
-  table
+  table;
 
   constructor(toStrFn = defaultToString) {
-    this.toStrFn = toStrFn
-    this.table = {}
+    this.toStrFn = toStrFn;
+    this.table = {};
   }
 
   /**
@@ -24,35 +24,35 @@ export default class HashTable {
    */
   loseloseHashCode(key) {
     if (typeof key === 'number') {
-      return key
+      return key;
     }
-    const hashTableKey = this.toStrFn(key)
-    let hash = 0
-    let i = 0
+    const hashTableKey = this.toStrFn(key);
+    let hash = 0;
+    let i = 0;
     while (i < hashTableKey.length) {
-      hash += hashTableKey.charCodeAt(i)
-      i++
+      hash += hashTableKey.charCodeAt(i);
+      i++;
     }
-    return hash % 23
+    return hash % 23;
   }
 
   /**
    * @param {T} key
    */
   dbj2HashCode(key) {
-    const tableKey = this.toStrFn(key)
-    let hash = 5381
+    const tableKey = this.toStrFn(key);
+    let hash = 5381;
     for (let i = 0; i < tableKey.length; i++) {
-      hash = hash * 33 + tableKey.charCodeAt(i)
+      hash = hash * 33 + tableKey.charCodeAt(i);
     }
-    return hash % 1013
+    return hash % 1013;
   }
 
   /**
    * @param {T} key
    */
   hashCode(key) {
-    return this.dbj2HashCode(key)
+    return this.dbj2HashCode(key);
   }
 
   /**
@@ -61,37 +61,37 @@ export default class HashTable {
    */
   put(key, value) {
     if (!key || !value) {
-      return false
+      return false;
     }
-    const valuePair = new ValuePair(key, value)
-    const tableKey = this.hashCode(key)
-    this.table[tableKey] = valuePair
-    return true
+    const valuePair = new ValuePair(key, value);
+    const tableKey = this.hashCode(key);
+    this.table[tableKey] = valuePair;
+    return true;
   }
 
   /**
    * @param {T} key
    */
   get(key) {
-    const hashTableKey = this.hashCode(key)
-    const valuePair = this.table[hashTableKey]
+    const hashTableKey = this.hashCode(key);
+    const valuePair = this.table[hashTableKey];
     if (!valuePair) {
-      return
+      return;
     }
-    return valuePair
+    return valuePair;
   }
 
   /**
    * @param {T} key
    */
   remove(key) {
-    const hashTableKey = this.hashCode(key)
-    const valuePair = this.table[hashTableKey]
+    const hashTableKey = this.hashCode(key);
+    const valuePair = this.table[hashTableKey];
     if (!valuePair) {
-      return false
+      return false;
     }
-    delete this.table[hashTableKey]
-    return true
+    delete this.table[hashTableKey];
+    return true;
   }
 
   /**
@@ -99,10 +99,10 @@ export default class HashTable {
    * @spacecomplexity O(n * m)
    */
   toString() {
-    const result = []
+    const result = [];
     for (const [hashTableKey, valuePair] of Object.entries(this.table)) {
-      result.push(`{${hashTableKey} => ${valuePair.toString()}}`)
+      result.push(`{${hashTableKey} => ${valuePair.toString()}}`);
     }
-    return result.join()
+    return result.join();
   }
 }

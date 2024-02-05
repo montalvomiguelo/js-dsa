@@ -1,4 +1,4 @@
-import LinkedList from './linked-list.js'
+import LinkedList from './linked-list.js';
 
 /**
  * @param {number} a
@@ -6,14 +6,14 @@ import LinkedList from './linked-list.js'
  */
 function defaultCompareFn(a, b) {
   if (a === b) {
-    return 0
+    return 0;
   }
 
   if (a < b) {
-    return -1
+    return -1;
   }
 
-  return 1
+  return 1;
 }
 
 /**
@@ -25,8 +25,8 @@ export default class SortedLinkedList extends LinkedList {
    * @param {(a: number, b: number) => number} compareFn
    */
   constructor(compareFn = defaultCompareFn) {
-    super()
-    this.compareFn = compareFn
+    super();
+    this.compareFn = compareFn;
   }
 
   /**
@@ -37,29 +37,29 @@ export default class SortedLinkedList extends LinkedList {
    */
   insert(value, index = 0) {
     if (this.size() === 0) {
-      const res = super.insert(value, index)
-      return res
+      const res = super.insert(value, index);
+      return res;
     }
 
-    return super.insert(value, this.insertPosition(value))
+    return super.insert(value, this.insertPosition(value));
   }
 
   /**
    * @param {T} value
    */
   insertPosition(value) {
-    let index = 0
-    let current = this.head
+    let index = 0;
+    let current = this.head;
 
     while (current) {
       if (this.compareFn(value, current.value) <= 0) {
-        break
+        break;
       } else {
-        index++
-        current = current.next
+        index++;
+        current = current.next;
       }
     }
 
-    return index
+    return index;
   }
 }

@@ -4,13 +4,13 @@
  */
 export function defaultToString(item) {
   if (item === null) {
-    return 'NULL'
+    return 'NULL';
   } else if (item === undefined) {
-    return 'UNDEFINED'
+    return 'UNDEFINED';
   } else if (typeof item === 'string' || item instanceof String) {
-    return `${item}`
+    return `${item}`;
   }
-  return item.toString()
+  return item.toString();
 }
 
 /**
@@ -19,14 +19,14 @@ export function defaultToString(item) {
  */
 export function defaultCompareFn(a, b) {
   if (a === b) {
-    return 0
+    return 0;
   }
 
   if (a < b) {
-    return -1
+    return -1;
   }
 
-  return 1
+  return 1;
 }
 
 /**
@@ -36,7 +36,7 @@ export function defaultCompareFn(a, b) {
  * @param {number} j
  */
 export function swap(array, i, j) {
-  const temp = array[i]
-  array[i] = array[j]
-  array[j] = temp
+  const temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
 }

@@ -1,4 +1,4 @@
-import { Node } from './node.js'
+import { Node } from './node.js';
 
 /**
  * @template T
@@ -7,16 +7,16 @@ import { Node } from './node.js'
  */
 export class DoublyNode extends Node {
   /** @type {DoublyNode<T> | null} */
-  prev
+  prev;
   /** @type {DoublyNode<T> | null} */
-  next
+  next;
 
   /**
    * @param {T} value
    */
   constructor(value) {
-    super(value)
-    this.prev = null
-    this.next = null
+    super(value);
+    this.prev = null;
+    this.next = null;
   }
 }

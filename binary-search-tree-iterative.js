@@ -1,17 +1,17 @@
 export default class BST {
-  value
+  value;
   /**  @type {BST | null} */
-  left
+  left;
   /**  @type {BST | null} */
-  right
+  right;
 
   /**
    * @param {number} value
    */
   constructor(value) {
-    this.value = value
-    this.left = null
-    this.right = null
+    this.value = value;
+    this.left = null;
+    this.right = null;
   }
 
   /**
@@ -23,22 +23,22 @@ export default class BST {
    */
   insert(value, node = this) {
     /** @type {BST | null} */
-    let parent = null
+    let parent = null;
     while (node) {
-      parent = node
+      parent = node;
       if (value < node.value) {
-        node = node.left
+        node = node.left;
         if (!node) {
-          parent.left = new BST(value)
+          parent.left = new BST(value);
         }
       } else {
-        node = node.right
+        node = node.right;
         if (!node) {
-          parent.right = new BST(value)
+          parent.right = new BST(value);
         }
       }
     }
-    return this
+    return this;
   }
 
   /**
@@ -49,18 +49,18 @@ export default class BST {
    * Worst: O(n) time | O(1) space
    */
   contains(value, node = this) {
-    let result = false
+    let result = false;
     while (node) {
       if (value < node.value) {
-        node = node.left
+        node = node.left;
       } else if (value > node.value) {
-        node = node.right
+        node = node.right;
       } else {
-        result = true
-        break
+        result = true;
+        break;
       }
     }
-    return result
+    return result;
   }
 
   /**
@@ -74,39 +74,39 @@ export default class BST {
   remove(value, node = this, parent = null) {
     while (node) {
       if (value < node.value) {
-        parent = node
-        node = node.left
+        parent = node;
+        node = node.left;
       } else if (value > node.value) {
-        parent = node
-        node = node.right
+        parent = node;
+        node = node.right;
       } else {
         // remove a leaf node
         if (parent && !node.left && !node.right) {
           if (value < parent.value) {
-            parent.left = null
+            parent.left = null;
           } else {
-            parent.right = null
+            parent.right = null;
           }
-          break
+          break;
         }
         // remove a node with 1 child
         if (parent && node.left && !node.right) {
-          parent.left = node.left
-          break
+          parent.left = node.left;
+          break;
         }
         if (parent && node.right && !node.left) {
-          parent.right = node.right
-          break
+          parent.right = node.right;
+          break;
         }
         // remove a node with 2 children
         if (node.right) {
-          const min = node.right.min()
-          node.value = min.value
-          node.right.remove(min.value, node.right, node)
+          const min = node.right.min();
+          node.value = min.value;
+          node.right.remove(min.value, node.right, node);
         }
       }
     }
-    return this
+    return this;
   }
 
   /**
@@ -117,9 +117,9 @@ export default class BST {
    */
   min(node = this) {
     while (node.left) {
-      node = node.left
+      node = node.left;
     }
-    return node
+    return node;
   }
 
   /**
@@ -131,21 +131,21 @@ export default class BST {
    */
   inOrder(callback, node = this) {
     if (!callback) {
-      return
+      return;
     }
     /** @type {BST[]} */
-    const stack = []
+    const stack = [];
     /** @type {BST | null | undefined} */
-    let current = node
+    let current = node;
     while (stack.length || current) {
       if (current) {
-        stack.push(current)
-        current = current.left
+        stack.push(current);
+        current = current.left;
       } else {
-        current = stack.pop()
+        current = stack.pop();
         if (current) {
-          callback(current)
-          current = current.right
+          callback(current);
+          current = current.right;
         }
       }
     }
@@ -160,21 +160,21 @@ export default class BST {
    */
   preOrder(callback, node = this) {
     if (!callback) {
-      return
+      return;
     }
     /** @type {BST[]} */
-    const stack = []
+    const stack = [];
     /** @type {BST | null | undefined} */
-    let current = node
+    let current = node;
     while (stack.length || current) {
       if (current) {
-        stack.push(current)
-        callback(current)
-        current = current.left
+        stack.push(current);
+        callback(current);
+        current = current.left;
       } else {
-        current = stack.pop()
+        current = stack.pop();
         if (current) {
-          current = current.right
+          current = current.right;
         }
       }
     }
@@ -189,27 +189,24 @@ export default class BST {
    */
   postOrder(callback, node = this) {
     /** @type {BST | null | undefined} */
-    let current = node
-    const stack = []
-    const stackRight = []
+    let current = node;
+    const stack = [];
+    const stackRight = [];
     while (current || stack.length) {
       if (current) {
         if (current.right) {
-          stackRight.push(current.right)
+          stackRight.push(current.right);
         }
-        stack.push(current)
-        current = current.left
+        stack.push(current);
+        current = current.left;
       } else {
-        current = stack[stack.length - 1]
-        if (
-          stackRight.length &&
-          current.right === stackRight[stackRight.length - 1]
-        ) {
-          current = stackRight.pop()
+        current = stack[stack.length - 1];
+        if (stackRight.length && current.right === stackRight[stackRight.length - 1]) {
+          current = stackRight.pop();
         } else {
-          callback(current)
-          stack.pop()
-          current = null
+          callback(current);
+          stack.pop();
+          current = null;
         }
       }
     }

@@ -5,11 +5,11 @@
  * @param {(v: string | number) => void} callback
  */
 export default function dfs(graph, callback) {
-  const vertices = graph.getVertices()
-  const adjList = graph.getAdjList()
-  const seen = new Set()
-  const vertex = vertices[0]
-  helper(vertex, callback, adjList, seen)
+  const vertices = graph.getVertices();
+  const adjList = graph.getAdjList();
+  const seen = new Set();
+  const vertex = vertices[0];
+  helper(vertex, callback, adjList, seen);
 }
 
 /**
@@ -19,13 +19,13 @@ export default function dfs(graph, callback) {
  * @param {Set<string|number>} seen
  */
 function helper(vertex, callback, adjList, seen) {
-  callback(vertex)
-  seen.add(vertex)
-  const adjVertices = adjList.get(vertex)
-  if (!adjVertices) return
+  callback(vertex);
+  seen.add(vertex);
+  const adjVertices = adjList.get(vertex);
+  if (!adjVertices) return;
   for (let i = 0; i < adjVertices.length; i++) {
-    const adjVertex = adjVertices[i]
-    if (seen.has(adjVertex)) continue
-    helper(adjVertex, callback, adjList, seen)
+    const adjVertex = adjVertices[i];
+    if (seen.has(adjVertex)) continue;
+    helper(adjVertex, callback, adjList, seen);
   }
 }

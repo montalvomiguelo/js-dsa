@@ -1,5 +1,5 @@
-import BinarySearchTree from './binary-search-tree.js'
-import { TreeNode as Node } from './node.js'
+import BinarySearchTree from './binary-search-tree.js';
+import { TreeNode as Node } from './node.js';
 
 /**
  * @template {number} T
@@ -14,13 +14,13 @@ export default class AVLTree extends BinarySearchTree {
    */
   getNodeHeight(node) {
     if (!node) {
-      return -1
+      return -1;
     }
     /** @type {number} */
-    const leftCount = this.getNodeHeight(node.left)
+    const leftCount = this.getNodeHeight(node.left);
     /** @type {number} */
-    const rightCount = this.getNodeHeight(node.right)
-    return Math.max(leftCount, rightCount) + 1
+    const rightCount = this.getNodeHeight(node.right);
+    return Math.max(leftCount, rightCount) + 1;
   }
 
   /**
@@ -31,16 +31,16 @@ export default class AVLTree extends BinarySearchTree {
    */
   getBalanceFactor(node) {
     if (!node) {
-      return 0
+      return 0;
     }
-    return this.getNodeHeight(node.left) - this.getNodeHeight(node.right)
+    return this.getNodeHeight(node.left) - this.getNodeHeight(node.right);
   }
 
   /**
    * @param {T} key
    */
   insert(key) {
-    this.root = this.insertNode(this.root, key)
+    this.root = this.insertNode(this.root, key);
   }
 
   /**
@@ -49,59 +49,55 @@ export default class AVLTree extends BinarySearchTree {
    */
   insertNode(node, key) {
     if (!node) {
-      return new Node(key)
+      return new Node(key);
     }
     if (this.compareFn(key, node.key) === -1) {
-      node.left = this.insertNode(node.left, key)
+      node.left = this.insertNode(node.left, key);
     } else {
-      node.right = this.insertNode(node.right, key)
+      node.right = this.insertNode(node.right, key);
     }
-    const balanceFactor = this.getBalanceFactor(node)
+    const balanceFactor = this.getBalanceFactor(node);
     if (balanceFactor > 1) {
       if (node.left && this.compareFn(key, node.left.key) === -1) {
-        node = this.rotateRight(node)
+        node = this.rotateRight(node);
       } else if (node.left && this.compareFn(key, node.left.key) === 1) {
-        node.left = this.rotateLeft(node.left)
-        node = this.rotateRight(node)
+        node.left = this.rotateLeft(node.left);
+        node = this.rotateRight(node);
       }
     }
     if (balanceFactor < -1) {
       if (node && node.right && this.compareFn(key, node.right.key) === 1) {
-        node = this.rotateLeft(node)
-      } else if (
-        node &&
-        node.right &&
-        this.compareFn(key, node.right.key) === -1
-      ) {
-        node.right = this.rotateRight(node.right)
-        node = this.rotateLeft(node)
+        node = this.rotateLeft(node);
+      } else if (node && node.right && this.compareFn(key, node.right.key) === -1) {
+        node.right = this.rotateRight(node.right);
+        node = this.rotateLeft(node);
       }
     }
-    return node
+    return node;
   }
 
   /**
    * @param {Node<T> | null} node
    */
   rotateLeft(node) {
-    const temp = node?.right ?? null
+    const temp = node?.right ?? null;
     if (temp && node) {
-      node.right = temp.left
-      temp.left = node
+      node.right = temp.left;
+      temp.left = node;
     }
-    return temp
+    return temp;
   }
 
   /**
    * @param {Node<T> | null} node
    */
   rotateRight(node) {
-    const temp = node?.left ?? null
+    const temp = node?.left ?? null;
     if (temp && node) {
-      node.left = temp.right
-      temp.right = node
+      node.left = temp.right;
+      temp.right = node;
     }
-    return temp
+    return temp;
   }
 
   /**
@@ -112,23 +108,23 @@ export default class AVLTree extends BinarySearchTree {
    * Space complexity O(h)
    */
   removeNode(node, key) {
-    node = super.removeNode(node, key)
-    const balanceFactor = this.getBalanceFactor(node)
+    node = super.removeNode(node, key);
+    const balanceFactor = this.getBalanceFactor(node);
     if (balanceFactor > 1) {
       if (node?.left && this.getBalanceFactor(node.left) >= 0) {
-        node = this.rotateRight(node)
+        node = this.rotateRight(node);
       } else if (node?.left) {
-        node.left = this.rotateLeft(node.left)
-        node = this.rotateRight(node)
+        node.left = this.rotateLeft(node.left);
+        node = this.rotateRight(node);
       }
     } else if (balanceFactor < -1) {
       if (node?.right && this.getBalanceFactor(node.right) <= 0) {
-        node = this.rotateLeft(node)
+        node = this.rotateLeft(node);
       } else if (node?.right) {
-        node.right = this.rotateRight(node.right)
-        node = this.rotateLeft(node)
+        node.right = this.rotateRight(node.right);
+        node = this.rotateLeft(node);
       }
     }
-    return node
+    return node;
   }
 }

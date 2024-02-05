@@ -1,5 +1,5 @@
-import { defaultToString } from './utils.js'
-import ValuePair from './value-pair.js'
+import { defaultToString } from './utils.js';
+import ValuePair from './value-pair.js';
 
 /**
  * @template T,U
@@ -7,12 +7,12 @@ import ValuePair from './value-pair.js'
 export default class Dictionary {
   constructor(toStrFn = defaultToString) {
     /** @private */
-    this.toStrFn = toStrFn
+    this.toStrFn = toStrFn;
     /**
      * @type {Object.<string, ValuePair.<T, U>>}
      * @private
      */
-    this.table = {}
+    this.table = {};
   }
 
   /**
@@ -21,20 +21,20 @@ export default class Dictionary {
    */
   set(key, value) {
     if (key === null || value === null) {
-      return false
+      return false;
     }
-    const tableKey = this.toStrFn(key)
-    const valuePair = new ValuePair(key, value)
-    this.table[tableKey] = valuePair
-    return true
+    const tableKey = this.toStrFn(key);
+    const valuePair = new ValuePair(key, value);
+    this.table[tableKey] = valuePair;
+    return true;
   }
 
   /**
    * @param {T} key
    */
   hasKey(key) {
-    const tableKey = this.toStrFn(key)
-    return this.table[tableKey] !== undefined
+    const tableKey = this.toStrFn(key);
+    return this.table[tableKey] !== undefined;
   }
 
   /**
@@ -42,17 +42,17 @@ export default class Dictionary {
    */
   remove(key) {
     if (!this.hasKey(key)) {
-      delete this.table[this.toStrFn(key)]
-      return false
+      delete this.table[this.toStrFn(key)];
+      return false;
     }
-    return true
+    return true;
   }
 
   /**
    * @param {T} key
    */
   get(key) {
-    return this.table[this.toStrFn(key)]?.value ?? undefined
+    return this.table[this.toStrFn(key)]?.value ?? undefined;
   }
 
   /**
@@ -60,14 +60,14 @@ export default class Dictionary {
    * @spacecomplexity O(n)
    */
   keyValues() {
-    const result = []
+    const result = [];
     for (const key in this.table) {
       if (!Object.prototype.hasOwnProperty.call(this.table, key)) {
-        continue
+        continue;
       }
-      result.push(this.table[key])
+      result.push(this.table[key]);
     }
-    return result
+    return result;
   }
 
   /**
@@ -75,14 +75,14 @@ export default class Dictionary {
    * @spacecomplexity O(n)
    */
   keys() {
-    const result = []
+    const result = [];
     for (const key in this.table) {
       if (!Object.prototype.hasOwnProperty.call(this.table, key)) {
-        continue
+        continue;
       }
-      result.push(key)
+      result.push(key);
     }
-    return result
+    return result;
   }
 
   /**
@@ -90,14 +90,14 @@ export default class Dictionary {
    * @spacecomplexity O(n)
    */
   values() {
-    const result = []
+    const result = [];
     for (const key in this.table) {
       if (!Object.prototype.hasOwnProperty.call(this.table, key)) {
-        continue
+        continue;
       }
-      result.push(this.table[key].value)
+      result.push(this.table[key].value);
     }
-    return result
+    return result;
   }
 
   /**
@@ -105,32 +105,32 @@ export default class Dictionary {
    * @param {S} callback
    */
   forEach(callback) {
-    const keyValues = this.keyValues()
+    const keyValues = this.keyValues();
     for (let i = 0; i < keyValues.length; i++) {
-      const item = keyValues[i]
-      const result = callback(item.key, item.value)
+      const item = keyValues[i];
+      const result = callback(item.key, item.value);
       if (!result) {
-        break
+        break;
       }
     }
   }
 
   size() {
-    let count = 0
+    let count = 0;
     for (const key in this.table) {
       if (Object.prototype.hasOwnProperty.call(this.table, key)) {
-        count++
+        count++;
       }
     }
-    return count
+    return count;
   }
 
   isEmpty() {
-    return this.size() === 0
+    return this.size() === 0;
   }
 
   clear() {
-    this.table = {}
+    this.table = {};
   }
 
   /**
@@ -138,11 +138,11 @@ export default class Dictionary {
    * @spacecomplexity O(n * m)
    */
   toString() {
-    const result = []
-    const keyValues = this.keyValues()
+    const result = [];
+    const keyValues = this.keyValues();
     for (const entry of keyValues) {
-      result.push(entry.toString())
+      result.push(entry.toString());
     }
-    return result.join(',')
+    return result.join(',');
   }
 }

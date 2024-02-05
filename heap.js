@@ -1,32 +1,32 @@
-import { swap } from './utils.js'
+import { swap } from './utils.js';
 
 export default class MinHeap {
   /** @type {number[]} */
-  heap
+  heap;
 
   constructor() {
-    this.heap = []
+    this.heap = [];
   }
 
   /**
    * @param {number} index
    */
   getLeftIndex(index) {
-    return 2 * index + 1
+    return 2 * index + 1;
   }
 
   /**
    * @param {number} index
    */
   getRightIndex(index) {
-    return 2 * index + 2
+    return 2 * index + 2;
   }
 
   /**
    * @param {number} index
    */
   getParentIndex(index) {
-    return Math.floor((index - 1) / 2)
+    return Math.floor((index - 1) / 2);
   }
 
   /**
@@ -34,11 +34,11 @@ export default class MinHeap {
    */
   insert(value) {
     if (!value) {
-      return false
+      return false;
     }
-    this.heap.push(value)
-    this.siftUp(this.heap.length - 1)
-    return true
+    this.heap.push(value);
+    this.siftUp(this.heap.length - 1);
+    return true;
   }
 
   /**
@@ -47,32 +47,32 @@ export default class MinHeap {
    * O(log n) time | O(1) space - where n is the length of the heap
    */
   siftUp(index) {
-    let parent = this.getParentIndex(index)
+    let parent = this.getParentIndex(index);
     while (index > 0 && this.heap[parent] > this.heap[index]) {
-      swap(this.heap, parent, index)
-      index = parent
-      parent = this.getParentIndex(index)
+      swap(this.heap, parent, index);
+      index = parent;
+      parent = this.getParentIndex(index);
     }
   }
 
   getMin() {
-    return this.heap[0]
+    return this.heap[0];
   }
 
   extract() {
     if (this.heap.length === 0) {
-      return
+      return;
     }
 
     if (this.heap.length === 1) {
-      return this.heap.shift()
+      return this.heap.shift();
     }
 
-    const root = this.heap[0]
-    this.heap[0] = this.heap[this.heap.length - 1]
-    this.heap.pop()
-    this.siftDown(0)
-    return root
+    const root = this.heap[0];
+    this.heap[0] = this.heap[this.heap.length - 1];
+    this.heap.pop();
+    this.siftDown(0);
+    return root;
   }
 
   /**
@@ -81,20 +81,20 @@ export default class MinHeap {
    * O(log n) time | O(log n) space - where n is the length of the heap
    */
   siftDown(index) {
-    const left = this.getLeftIndex(index)
-    const right = this.getRightIndex(index)
-    let smallest = index
-    const size = this.heap.length
+    const left = this.getLeftIndex(index);
+    const right = this.getRightIndex(index);
+    let smallest = index;
+    const size = this.heap.length;
 
     if (left < size && this.heap[left] < this.heap[smallest]) {
-      smallest = left
+      smallest = left;
     }
     if (right < size && this.heap[right] < this.heap[smallest]) {
-      smallest = right
+      smallest = right;
     }
     if (smallest !== index) {
-      swap(this.heap, smallest, index)
-      this.siftDown(smallest)
+      swap(this.heap, smallest, index);
+      this.siftDown(smallest);
     }
   }
 }

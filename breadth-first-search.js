@@ -3,38 +3,36 @@
  * @param {(v: (string | number)) => void} callback
  * @param {string|number} vertex
  * @description
- * O(v * e) time | O(v) space - where v is the number of vertices and e is the number of edges
+ * O(v + e) time | O(v) space - where v is the number of vertices and e is the number of edges
  */
 export default function breadthFirstSearch(graph, callback, vertex) {
-  const queue = []
-  const seen = new Set()
-  queue.push(vertex)
+  const queue = [];
+  const seen = new Set();
+  queue.push(vertex);
   /** @type {Object.<string|number, number>} */
-  const distances = {}
+  const distances = {};
   /** @type {Object.<string|number, number>} */
-  const predecessors = {}
+  const predecessors = {};
 
   while (queue.length) {
-    const vertex = /** @type {string|number} */ (queue.shift())
+    const vertex = /** @type {string|number} */ (queue.shift());
     if (!seen.size) {
-      distances[vertex] = 0
-      predecessors[vertex] = null
+      distances[vertex] = 0;
+      predecessors[vertex] = null;
     }
-    callback(vertex)
-    const neighbors = /** @type {(string|number)[]} */ (
-      graph.getAdjList().get(vertex)
-    )
+    callback(vertex);
+    const neighbors = /** @type {(string|number)[]} */ (graph.getAdjList().get(vertex));
     for (let i = 0; i < neighbors.length; i++) {
-      const adjVertex = neighbors[i]
+      const adjVertex = neighbors[i];
       if (!seen.has(adjVertex)) {
-        distances[adjVertex] = distances[vertex] + 1
-        predecessors[adjVertex] = vertex
-        queue.push(adjVertex)
-        seen.add(adjVertex)
+        distances[adjVertex] = distances[vertex] + 1;
+        predecessors[adjVertex] = vertex;
+        queue.push(adjVertex);
+        seen.add(adjVertex);
       }
     }
-    seen.add(vertex)
+    seen.add(vertex);
   }
 
-  return { distances, predecessors }
+  return { distances, predecessors };
 }

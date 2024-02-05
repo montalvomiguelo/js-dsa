@@ -6,9 +6,9 @@
  */
 export default function permute(nums) {
   /** @type {number[][]} */
-  const permutations = []
-  helper(0, nums, permutations)
-  return permutations
+  const permutations = [];
+  helper(0, nums, permutations);
+  return permutations;
 }
 
 /**
@@ -18,12 +18,12 @@ export default function permute(nums) {
  */
 function helper(i, nums, permutations) {
   if (i === nums.length) {
-    permutations.push(nums.slice())
+    permutations.push(nums.slice());
   } else {
     for (let j = i; j < nums.length; j++) {
-      swap(nums, i, j)
-      helper(i + 1, nums, permutations)
-      swap(nums, i, j)
+      swap(nums, i, j);
+      helper(i + 1, nums, permutations);
+      swap(nums, i, j);
     }
   }
 }
@@ -34,7 +34,7 @@ function helper(i, nums, permutations) {
  * @param {number} j
  */
 function swap(nums, i, j) {
-  const temp = nums[i]
-  nums[i] = nums[j]
-  nums[j] = temp
+  const temp = nums[i];
+  nums[i] = nums[j];
+  nums[j] = temp;
 }

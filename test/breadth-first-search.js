@@ -1,33 +1,29 @@
-import test from 'ava'
-import { Graph } from '../graph.js'
-import breadthFirstSearch from '../breadth-first-search.js'
+import test from 'ava';
+import { Graph } from '../graph.js';
+import breadthFirstSearch from '../breadth-first-search.js';
 
 test('works as expected', (t) => {
-  const graph = new Graph()
+  const graph = new Graph();
   /** @type {(number | string)[]} */
-  const res = []
+  const res = [];
 
-  const vertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-  vertices.forEach((v) => graph.addVertex(v))
+  const vertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+  vertices.forEach((v) => graph.addVertex(v));
 
-  graph.addEdge('A', 'B')
-  graph.addEdge('A', 'C')
-  graph.addEdge('A', 'D')
-  graph.addEdge('C', 'D')
-  graph.addEdge('C', 'G')
-  graph.addEdge('D', 'G')
-  graph.addEdge('D', 'H')
-  graph.addEdge('B', 'E')
-  graph.addEdge('B', 'F')
-  graph.addEdge('E', 'I')
+  graph.addEdge('A', 'B');
+  graph.addEdge('A', 'C');
+  graph.addEdge('A', 'D');
+  graph.addEdge('C', 'D');
+  graph.addEdge('C', 'G');
+  graph.addEdge('D', 'G');
+  graph.addEdge('D', 'H');
+  graph.addEdge('B', 'E');
+  graph.addEdge('B', 'F');
+  graph.addEdge('E', 'I');
 
-  const shortestPathA = breadthFirstSearch(
-    graph,
-    (v) => res.push(v),
-    vertices[0]
-  )
+  const shortestPathA = breadthFirstSearch(graph, (v) => res.push(v), vertices[0]);
 
-  t.deepEqual(res, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])
+  t.deepEqual(res, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']);
 
   t.deepEqual(shortestPathA, {
     distances: {
@@ -52,25 +48,25 @@ test('works as expected', (t) => {
       H: 'D',
       I: 'E',
     },
-  })
+  });
 
-  const paths = []
-  const vertexA = vertices[0]
+  const paths = [];
+  const vertexA = vertices[0];
 
   for (let i = 1; i < vertices.length; i++) {
-    const vertex = vertices[i]
-    let adjVertex = shortestPathA.predecessors[vertex]
-    const stack = [vertex]
-    const path = []
+    const vertex = vertices[i];
+    let adjVertex = shortestPathA.predecessors[vertex];
+    const stack = [vertex];
+    const path = [];
     while (adjVertex !== vertexA) {
-      stack.push(adjVertex)
-      adjVertex = shortestPathA.predecessors[adjVertex]
+      stack.push(adjVertex);
+      adjVertex = shortestPathA.predecessors[adjVertex];
     }
-    stack.push(vertexA)
+    stack.push(vertexA);
     while (stack.length) {
-      path.push(stack.pop())
+      path.push(stack.pop());
     }
-    paths.push(path.join(' - '))
+    paths.push(path.join(' - '));
   }
 
   t.deepEqual(paths, [
@@ -82,5 +78,5 @@ test('works as expected', (t) => {
     'A - C - G',
     'A - D - H',
     'A - B - E - I',
-  ])
-})
+  ]);
+});

@@ -1,14 +1,14 @@
 export default class Set {
   constructor() {
     /** @type {Record<number, number>} */
-    this.items = {}
+    this.items = {};
   }
 
   /**
    * @param {number} element
    */
   has(element) {
-    return Object.prototype.hasOwnProperty.call(this.items, element)
+    return Object.prototype.hasOwnProperty.call(this.items, element);
   }
 
   /**
@@ -16,11 +16,11 @@ export default class Set {
    */
   add(element) {
     if (this.has(element)) {
-      return false
+      return false;
     }
 
-    this.items[element] = element
-    return true
+    this.items[element] = element;
+    return true;
   }
 
   /**
@@ -28,42 +28,42 @@ export default class Set {
    */
   delete(element) {
     if (!this.has(element)) {
-      return false
+      return false;
     }
 
-    return delete this.items[element]
+    return delete this.items[element];
   }
 
   clear() {
-    this.items = {}
+    this.items = {};
   }
 
   /**
    * @timecomplexity O(n) where n is the number of items in the list
    */
   size() {
-    let count = 0
+    let count = 0;
     for (let key in this.items) {
       if (Object.prototype.hasOwnProperty.call(this.items, key)) {
-        count++
+        count++;
       }
     }
-    return count
+    return count;
   }
 
   /**
    * @timecomplexity O(n) where n is the number if items in the list
    */
   values() {
-    let values = []
+    let values = [];
 
     for (let key in this.items) {
       if (Object.prototype.hasOwnProperty.call(this.items, key)) {
-        values.push(this.items[key])
+        values.push(this.items[key]);
       }
     }
 
-    return values
+    return values;
   }
 
   /**
@@ -72,14 +72,14 @@ export default class Set {
    * @spacecomplexity O(n + m)
    */
   union(set) {
-    const result = new Set()
+    const result = new Set();
     for (const value of this.values()) {
-      result.add(value)
+      result.add(value);
     }
     for (const value of set.values()) {
-      result.add(value)
+      result.add(value);
     }
-    return result
+    return result;
   }
 
   /**
@@ -89,15 +89,15 @@ export default class Set {
    */
   intersection(set) {
     if (set.size() < this.size()) {
-      return set.union(this)
+      return set.union(this);
     }
-    const result = new Set()
+    const result = new Set();
     for (const value of this.values()) {
       if (set.has(value)) {
-        result.add(value)
+        result.add(value);
       }
     }
-    return result
+    return result;
   }
 
   /**
@@ -106,13 +106,13 @@ export default class Set {
    * @spacecomplexity O(n)
    */
   difference(set) {
-    const result = new Set()
+    const result = new Set();
     for (const value of this.values()) {
       if (!set.has(value)) {
-        result.add(value)
+        result.add(value);
       }
     }
-    return result
+    return result;
   }
 
   /**
@@ -122,15 +122,15 @@ export default class Set {
    */
   isSubsetOf(set) {
     if (this.size() > set.size()) {
-      return false
+      return false;
     }
 
     for (const value of this.values()) {
       if (!set.has(value)) {
-        return false
+        return false;
       }
     }
 
-    return true
+    return true;
   }
 }

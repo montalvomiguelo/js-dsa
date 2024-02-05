@@ -1,22 +1,22 @@
-import { defaultToString } from './utils.js'
-import ValuePair from './value-pair.js'
-import LinkedList from './linked-list.js'
+import { defaultToString } from './utils.js';
+import ValuePair from './value-pair.js';
+import LinkedList from './linked-list.js';
 
 /**
  * @template T,U
  */
 export default class HashTableSeparateChaining {
   /** @protected */
-  toStrFn
+  toStrFn;
   /**
    * @type {Object.<number, LinkedList<ValuePair<T, U>>|undefined>}
    * @protected
    */
-  table
+  table;
 
   constructor(toStrFn = defaultToString) {
-    this.toStrFn = toStrFn
-    this.table = {}
+    this.toStrFn = toStrFn;
+    this.table = {};
   }
 
   /**
@@ -25,21 +25,21 @@ export default class HashTableSeparateChaining {
    */
   loseloseHashCode(key) {
     if (typeof key === 'number') {
-      return key
+      return key;
     }
-    const hashTableKey = this.toStrFn(key)
-    let hash = 0
+    const hashTableKey = this.toStrFn(key);
+    let hash = 0;
     for (let i = 0; i < hashTableKey.length; i++) {
-      hash = +hashTableKey.charCodeAt(i)
+      hash = +hashTableKey.charCodeAt(i);
     }
-    return hash % 37
+    return hash % 37;
   }
 
   /**
    * @param {T} key
    */
   hashCode(key) {
-    return this.loseloseHashCode(key)
+    return this.loseloseHashCode(key);
   }
 
   /**
@@ -49,13 +49,13 @@ export default class HashTableSeparateChaining {
    */
   put(key, value) {
     if (!key || !value) {
-      return false
+      return false;
     }
-    const valuePair = new ValuePair(key, value)
-    const tableKey = this.hashCode(key)
-    this.table[tableKey] ||= new LinkedList()
-    this.table[tableKey]?.push(valuePair)
-    return true
+    const valuePair = new ValuePair(key, value);
+    const tableKey = this.hashCode(key);
+    this.table[tableKey] ||= new LinkedList();
+    this.table[tableKey]?.push(valuePair);
+    return true;
   }
 
   /**
@@ -63,21 +63,21 @@ export default class HashTableSeparateChaining {
    * @timecomplexity O(n + m)
    */
   get(key) {
-    const tableKey = this.hashCode(key)
-    const linkedList = this.table[tableKey]
+    const tableKey = this.hashCode(key);
+    const linkedList = this.table[tableKey];
     if (!linkedList) {
-      return
+      return;
     }
-    let current = linkedList.getHead()
-    let valuePair
+    let current = linkedList.getHead();
+    let valuePair;
     while (current) {
       if (current.value.key === key) {
-        valuePair = current.value.value
-        break
+        valuePair = current.value.value;
+        break;
       }
-      current = current.next
+      current = current.next;
     }
-    return valuePair
+    return valuePair;
   }
 
   /**
@@ -85,27 +85,27 @@ export default class HashTableSeparateChaining {
    * @timecomplexity O(n + m)
    */
   remove(key) {
-    const tableKey = this.hashCode(key)
-    const linkedList = this.table[tableKey]
+    const tableKey = this.hashCode(key);
+    const linkedList = this.table[tableKey];
     if (!linkedList) {
-      return false
+      return false;
     }
-    let current = linkedList.getHead()
-    let index = -1
+    let current = linkedList.getHead();
+    let index = -1;
     while (current) {
       if (current.value.key === key) {
-        index++
-        linkedList.removeAt(index)
-        break
+        index++;
+        linkedList.removeAt(index);
+        break;
       }
-      current = current.next
+      current = current.next;
     }
     if (index === -1) {
-      return false
+      return false;
     }
     if (linkedList.isEmpty()) {
-      delete this.table[tableKey]
+      delete this.table[tableKey];
     }
-    return true
+    return true;
   }
 }

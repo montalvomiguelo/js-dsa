@@ -4,12 +4,12 @@
  * @spacecomplexity O(1)
  */
 export function iterative(number) {
-  if (number < 0) return
-  let total = 1
+  if (number < 0) return;
+  let total = 1;
   for (let i = number; i > 1; i--) {
-    total = total * i
+    total = total * i;
   }
-  return total
+  return total;
 }
 
 /**
@@ -18,14 +18,14 @@ export function iterative(number) {
  * @spacecomplexity O(n)
  */
 export function recursive(number) {
-  if (number < 0) return
-  let total = 1
+  if (number < 0) return;
+  let total = 1;
   if (number > 1) {
-    total *= number
-    const result = recursive(number - 1)
+    total *= number;
+    const result = recursive(number - 1);
     if (result) {
-      total *= result
+      total *= result;
     }
   }
-  return total
+  return total;
 }

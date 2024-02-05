@@ -1,16 +1,16 @@
-import { defaultCompareFn } from './utils.js'
-import { TreeNode as Node } from './node.js'
+import { defaultCompareFn } from './utils.js';
+import { TreeNode as Node } from './node.js';
 
 /**
  * @template {number} T
  */
 export default class BinarySearchTree {
   /** @type {Node<T> | null} */
-  root
+  root;
 
   constructor(compareFn = defaultCompareFn) {
-    this.compareFn = compareFn
-    this.root = null
+    this.compareFn = compareFn;
+    this.root = null;
   }
 
   /**
@@ -18,9 +18,9 @@ export default class BinarySearchTree {
    */
   insert(key) {
     if (!this.root) {
-      this.root = new Node(key)
+      this.root = new Node(key);
     } else {
-      this.insertNode(this.root, key)
+      this.insertNode(this.root, key);
     }
   }
 
@@ -34,15 +34,15 @@ export default class BinarySearchTree {
   insertNode(node, key) {
     if (this.compareFn(key, node.key) === -1) {
       if (node.left) {
-        this.insertNode(node.left, key)
+        this.insertNode(node.left, key);
       } else {
-        node.left = new Node(key)
+        node.left = new Node(key);
       }
     } else {
       if (node.right) {
-        this.insertNode(node.right, key)
+        this.insertNode(node.right, key);
       } else {
-        node.right = new Node(key)
+        node.right = new Node(key);
       }
     }
   }
@@ -51,7 +51,7 @@ export default class BinarySearchTree {
    * @param {(node: Node<T>) => void} callback
    */
   inOrderTraverse(callback) {
-    this.inOrderTraverseNode(this.root, callback)
+    this.inOrderTraverseNode(this.root, callback);
   }
 
   /**
@@ -63,9 +63,9 @@ export default class BinarySearchTree {
    */
   inOrderTraverseNode(node, callback) {
     if (node) {
-      this.inOrderTraverseNode(node.left, callback)
-      callback(node)
-      this.inOrderTraverseNode(node.right, callback)
+      this.inOrderTraverseNode(node.left, callback);
+      callback(node);
+      this.inOrderTraverseNode(node.right, callback);
     }
   }
 
@@ -78,9 +78,9 @@ export default class BinarySearchTree {
    */
   preOrderTraverse(callback, node = this.root) {
     if (node) {
-      callback(node)
-      this.preOrderTraverse(callback, node.left)
-      this.preOrderTraverse(callback, node.right)
+      callback(node);
+      this.preOrderTraverse(callback, node.left);
+      this.preOrderTraverse(callback, node.right);
     }
   }
 
@@ -93,9 +93,9 @@ export default class BinarySearchTree {
    */
   postOrderTraverse(callback, node = this.root) {
     if (node) {
-      this.postOrderTraverse(callback, node.left)
-      this.postOrderTraverse(callback, node.right)
-      callback(node)
+      this.postOrderTraverse(callback, node.left);
+      this.postOrderTraverse(callback, node.right);
+      callback(node);
     }
   }
 
@@ -107,11 +107,11 @@ export default class BinarySearchTree {
   min(node = this.root) {
     while (node) {
       if (!node.left) {
-        break
+        break;
       }
-      node = node.left
+      node = node.left;
     }
-    return node
+    return node;
   }
 
   /**
@@ -122,9 +122,9 @@ export default class BinarySearchTree {
   max(node = this.root) {
     while (node) {
       if (!node.right) {
-        return node
+        return node;
       }
-      node = node.right
+      node = node.right;
     }
   }
 
@@ -135,29 +135,29 @@ export default class BinarySearchTree {
    * Spacecomplexity O(h) where h is the height of the tree
    */
   search(key) {
-    let node = this.root
-    let result = null
+    let node = this.root;
+    let result = null;
 
     while (node) {
       if (this.compareFn(key, node.key) === -1) {
-        node = node.left
+        node = node.left;
       } else if (this.compareFn(key, node.key) === 1) {
-        node = node.right
+        node = node.right;
       } else {
-        result = node
-        break
+        result = node;
+        break;
       }
     }
 
-    return result
+    return result;
   }
 
   /**
    * @param {T} key
    */
   remove(key) {
-    this.root = this.removeNode(this.root, key)
-    return this.root
+    this.root = this.removeNode(this.root, key);
+    return this.root;
   }
 
   /**
@@ -169,30 +169,30 @@ export default class BinarySearchTree {
    */
   removeNode(node, key) {
     if (!node) {
-      return node
+      return node;
     }
     if (this.compareFn(key, node.key) === -1) {
-      node.left = this.removeNode(node.left, key)
+      node.left = this.removeNode(node.left, key);
     } else if (this.compareFn(key, node.key) === 1) {
-      node.right = this.removeNode(node.right, key)
+      node.right = this.removeNode(node.right, key);
     } else {
       // node is leaf
       if (!node.left && !node.right) {
-        node = null
+        node = null;
         // node has one child
       } else if (!node.left) {
-        node = node.right
+        node = node.right;
       } else if (!node.right) {
-        node = node.left
+        node = node.left;
       } else {
         // node has two children
-        const successor = this.min(node.right)
+        const successor = this.min(node.right);
         if (successor) {
-          node.key = successor.key
-          node.right = this.removeNode(node.right, successor.key)
+          node.key = successor.key;
+          node.right = this.removeNode(node.right, successor.key);
         }
       }
     }
-    return node
+    return node;
   }
 }

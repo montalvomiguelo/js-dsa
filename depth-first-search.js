@@ -1,22 +1,22 @@
 export default class Node {
-  name
+  name;
   /** @type {Node[]} */
-  children
+  children;
 
   /**
    * @param {string} name
    */
   constructor(name) {
-    this.name = name
-    this.children = []
+    this.name = name;
+    this.children = [];
   }
 
   /**
    * @param {string} name
    */
   addChild(name) {
-    this.children.push(new Node(name))
-    return this
+    this.children.push(new Node(name));
+    return this;
   }
 
   /**
@@ -26,10 +26,10 @@ export default class Node {
    * @spacecomplexity O(n) where n is the number of nodes
    */
   depthFirstSearch(array, node = this) {
-    array.push(node.name)
+    array.push(node.name);
     for (let i = 0; i < node.children.length; i++) {
-      this.depthFirstSearch(array, node.children[i])
+      this.depthFirstSearch(array, node.children[i]);
     }
-    return array
+    return array;
   }
 }

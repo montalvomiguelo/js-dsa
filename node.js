@@ -3,16 +3,16 @@
  * @class
  */
 export class Node {
-  value
+  value;
   /** @type {Node<T> | null} */
-  next
+  next;
 
   /**
    * @param {T} value
    */
   constructor(value) {
-    this.value = value
-    this.next = null
+    this.value = value;
+    this.next = null;
   }
 }
 
@@ -20,19 +20,19 @@ export class Node {
  * @template T
  */
 export class TreeNode {
-  key
+  key;
   /** @type {TreeNode<T> | null} */
-  left
+  left;
   /** @type {TreeNode<T> | null} */
-  right
+  right;
 
   /**
    * @param {T} key
    */
   constructor(key) {
-    this.key = key
-    this.left = null
-    this.right = null
+    this.key = key;
+    this.left = null;
+    this.right = null;
   }
 }
 
@@ -40,7 +40,7 @@ export class TreeNode {
 export const Colors = {
   RED: 1,
   BLACK: 0,
-}
+};
 
 /**
  * @template T
@@ -48,26 +48,26 @@ export const Colors = {
  */
 export class RedBlackNode extends TreeNode {
   /** @type {RedBlackNode<T> | null} */
-  left
+  left;
   /** @type {RedBlackNode<T> | null} */
-  right
+  right;
   /** @type {Colors} */
-  color
+  color;
   /** @type {RedBlackNode<T> | null} */
-  parent
+  parent;
 
   /**
    * @param {T} key
    */
   constructor(key) {
-    super(key)
-    this.left = null
-    this.right = null
-    this.color = Colors.RED
-    this.parent = null
+    super(key);
+    this.left = null;
+    this.right = null;
+    this.color = Colors.RED;
+    this.parent = null;
   }
 
   isRed() {
-    return this.color === Colors.RED
+    return this.color === Colors.RED;
   }
 }
